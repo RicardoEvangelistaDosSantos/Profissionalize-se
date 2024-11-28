@@ -8,7 +8,7 @@ const fileCancelButton = document.querySelector("#file-cancel");
 const chatbotToggler = document.querySelector("#chatbot-toggler");
 const closeChatbot = document.querySelector("#close-chatbot");
 // Seleção e armazenamento da API de inteligência artificial.
-const API_KEY = `AIzaSyBIhErZG9cXLfRBsUCFHiq4Z4Q9sUJKLyg`; //Coloque Aqui a sua API_KEY do gemini
+const API_KEY = ``; //Coloque Aqui a sua API_KEY do gemini
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/
 gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
