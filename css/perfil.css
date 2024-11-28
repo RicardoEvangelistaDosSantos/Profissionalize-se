@@ -1,0 +1,331 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+}
+/*cores*/
+:root{
+    --background_color: #0d0d2b;
+    --background_color_two: #131335; 
+    
+    --main_one: #A40148;
+    --main_two: #790034;
+    --second_color: rgb(46, 46, 98);
+    --borde_color:#560637;
+    --second_border_color: #ae2d6555;
+
+    --text_one:#ffffff;
+    --text_two:#bdbdbd;
+}
+.section-2{
+    margin-bottom: 100px;
+    box-shadow: 2px 2px 20px black;
+}
+main{
+    display: flex;
+    background-color: var(--background_color);
+  
+    justify-content: center;
+    align-items: center;
+}
+.div-main{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    align-items: center;
+    width: 60%;
+   
+}
+
+/*----section 1----*/
+/*bolinha de perfil e banner */
+.section-1{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 300px;
+    background-color: rgb(189, 199, 199);
+    justify-content: center;
+    align-items: end;
+    border: #0d0d2b solid 2px;
+}
+.section-1 .img-radion {
+    position: absolute;
+    border: #0d0d2b solid;
+    border-radius: 100% 100% 100% 100%;
+    width: 200px;
+    height: 200px;
+    bottom: -20px;
+    background-image:url("./img-background/JuninGamePrayPicaDasGalaxias.svg") ; /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
+    background-size: cover;
+} 
+
+
+/*----section 2----*/
+.section-2{
+    width: 100%;
+    background-color: #bdbdbd;
+    padding: 30px 0px 0px 0px;
+}
+
+/* cima section 2*/
+.sec2-top{
+    width: 100% ;
+}
+.profile-title{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.profile-title h2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+}
+.profile-title button{
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+}
+.profile-title button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.profile-title button:active{
+    transform: scale(0.9);
+    cursor: pointer;
+}
+
+.profile-text {
+    margin: 0px 10px 0px 10px;
+}
+
+/*centro sectio2*/
+.sec2-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100% ;
+    margin-top: 2%;
+}
+
+.sec2-center .quests{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 20px;
+    width: 90%;
+}
+.quests .quests-profire{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    gap: 2px;
+}
+
+ .quest{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.quest img{
+    border: solid black;
+    border-radius: 100%;
+    width: 120px;
+    height: 120px;
+}
+
+
+/*baixo sectio 2*/
+.sec2-bottom{
+    display: flex;
+    
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10%;
+    height: 200px;
+    background-color: #c8c8c8;
+}
+.form-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+    background-color: #bdbdbd;
+    
+}
+.contact-profire form, .contact-profire form label {
+    padding: 20px;
+}
+
+
+/*section-3*/
+.section-3{
+    background-color: var(--main_two);
+    /* text-align: center; */
+    margin: 20px;
+    width: 100%;
+    box-shadow: 2px 2px 20px black;
+    border-radius: 10px;
+    color: var(--text_one);
+}
+
+
+.section-3 h1{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.section-3 form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(17,1fr);
+    grid-template-areas: 
+    "item-1 item-1 item-1 item-1 item-1 item-1 item-1 item-1 . item-3 item-3 item-3 item-3 item-3 item-3 item-3 item-3"
+    "item-2 item-2 item-2 item-2 item-2 . item-7 item-7 item-7 item-7 item-7 . item-4 item-4 item-4 item-4 item-4"
+    "item-5 item-5 item-5 item-5 item-5 item-5 item-5 item-5 .  item-6 item-6 item-6 item-6 item-6 item-6 item-6 item-6 "
+    "item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8"
+    ;   
+    
+    grid-template-rows: auto auto auto auto auto; /* Ajusta altura automática */
+    
+}
+
+
+ .item-1,.item-2,.item-3,.item-4,.item-5,.item-6,.item-7,.item-8,.item-9,.item-10{
+    display: flex;
+    flex-direction: column;
+
+} 
+
+.item-1{grid-area: item-1;}
+.item-2{grid-area: item-2;}
+.item-3{grid-area: item-3;}
+.item-4{grid-area: item-4;}
+.item-5{grid-area: item-5;}
+.item-6{grid-area: item-6;}
+.item-7{grid-area: item-7;}
+.item-8{grid-area: item-8;}
+.item-9{grid-area: item-9;}
+
+.section-3 .input-form{
+    width: 100%;
+    
+}
+
+
+
+input[type="date"] {
+    accent-color: rgb(255, 255, 255) !important ;/* Altere para a cor desejada */
+}
+.section-3 input{
+    padding: 12px;
+    font-size: 1rem;
+    color: var(--text_one);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid var(--text_two);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    transition: border 0.3s, border-radius 0.3s, background-color 0.3s;
+    
+}
+
+.section-3 input:focus {
+    border: 2px solid var(--text_two);
+    border-radius: 20px;
+    background-color: var(--second_border_color);
+   
+}
+.section-3 input:hover{
+    background-color: var(--second_border_color);
+    transition: background-color 0.1s;
+    
+}
+
+.form-buttom button{
+    width: 300px;
+    padding: 12px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: var(--main_one);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+
+/*section*/
+select {
+    /* Reset Select */
+    appearance: none;
+    outline: 10px red;
+    box-shadow: none;
+    /* Personalize */
+    flex: 1;
+    padding: 0 1em;
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid var(--text_two);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-image: none;
+    cursor: pointer;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+
+  .select {
+    position: relative;
+    display: flex;
+    height: 3em;
+    border-radius: .25em;
+    overflow: hidden;
+  }
+
+  /* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+
+    transition: .25s all ease;
+    pointer-events: none;
+  }
+  /* Transition */
+.select:hover::after {
+    color: #f39c12;
+  }
+  

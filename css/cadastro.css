@@ -1,0 +1,281 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/*cores*/
+:root{
+    --background_color: #0d0d2b;
+    --background_color_two: #131335;
+
+    --main_one: #A40148;
+    --main_two: #790034;
+    --second_color: rgb(46, 46, 98);
+
+    --text_one:#ffffff;
+    --text_two:#bdbdbd;
+}
+
+/* Corpo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background_color);
+    color: #ffffff;
+}
+
+/* Estilização principal */
+main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background_color) ;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Seção esquerda (título) */
+.section-left {
+    flex: 1;
+    background-color: var(--background_color);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.section-left h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+/*Animação de texto da esquerda*/
+.section-left h1 span{
+    position: relative;
+   
+}
+.section-left h1 span::before{
+    content: "";
+    color: var(--text_one);
+    animation: key_not 8s 1 forwards;
+}
+.section-left h1 span::after{
+    content: "";
+    border-left: 2px solid var(--text_one);
+    position: absolute;
+    height: 100%;
+    right: -10px;
+    animation: key_cursor .6s infinite, key_del 10s steps(15) 1 forwards;
+    width: calc(100% + 10px);
+    background-color: var(--background_color);
+}
+@keyframes key_del {
+    5%,20%,25%,40%,45%,60%,65%{
+        width: calc(100% + 10px);
+    }
+    10%,15%,30%,35%,50%,55%,70%,75%{
+        width: 0;
+    }
+    95%,100%{
+        width: 0;
+    }
+}
+@keyframes key_not {
+    0%,25%{
+        content: "ização";
+    }
+    26%,50%{
+        content:"izado";
+    }
+    51%,75%{
+        content:"izar"
+    }
+    76%,100%{
+        content:"ize-se"
+    }  
+}
+@keyframes key_cursor {
+    0%{
+        border-left: 2px solid var(--background_color);
+    }
+    50%{
+        border-left: 2px solid var(--text_one);
+    }
+    100%{
+        border-left: 2px solid var(--background_color);
+    }
+}
+
+
+/* Seção direita (formulário) */
+.section-right {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    height: 90%;
+    width: 90%;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--background_color_two);;
+    border-radius: 10px;
+    border: solid var(--main_two);
+    border-left: none;
+    border-top: none;
+    margin: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Título do formulário */
+.table-up h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulário de login */
+.table-center form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.table-center label {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.table-center input {
+    font-size: 1rem;
+    color: var(--text_one);
+    background-color: #e0e0e0;
+    border: none;
+    outline: none;
+    background-color: var(--background_color_two);
+    border: 2px solid var(--main_one);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+.table-center input:focus {
+    border: 2px solid var(--main_one);
+    border-radius: 20px;
+    background-color: var(--second_color);
+}
+.table-center input:hover{
+    background-color: var(--second_color)
+}
+
+
+.table-center .form {
+    display: flex;
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+.table-center label {
+    width: 150px; 
+    margin-right: 10px; 
+}
+.table-center input {
+    width: 100%;
+    max-width: 500px; 
+    padding: 0px 15px 0px 15px; 
+
+}
+
+/* Botão de login */
+.table-down {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.table-down button {
+    width: 50%;
+    padding: 12px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: var(--main_one);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 2% 20% 2% 25%;
+}
+
+.table-down button:hover {
+    background-color: var(--main_two);
+}
+.table-down button:active{
+    transform: scale(0.9);
+}
+/*termos de uso*/
+.terms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.input-terms{
+    display: flex;
+    justify-content: center;
+    margin: 5px; 
+}
+.input-terms input {
+    width: 20px;
+    max-width: 30px; 
+    padding: 0px 15px 0px 15px; 
+    margin-left: 10%;
+
+}
+.input-terms label {
+    text-align: left;
+    margin-right: 10px; 
+    width: 50%;
+}
+
+
+
+/* Link para cadastro */
+.table-down a {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--main_one);
+    text-decoration: none;
+}
+
+.table-down a:hover {
+    text-decoration: underline;
+}
+.table-down a:active{
+    color: var(--text_one);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .section-left {
+        padding: 30px;
+    }
+
+    .section-right {
+        padding: 20px;
+    }
+
+    label{
+        font-size: 12px;
+    }
+
+}

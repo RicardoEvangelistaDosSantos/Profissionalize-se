@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/perfil.css" rel=stylesheet>
+    <title>perfil Profissionalize-se</title>
+</head>
+<body>
+    <main>
+        <div class="div-main">
+            <section class="section-1">
+                <div  class="img-radion" src="img/background/JuninGamePrayPicaDasGalaxias.svg" alt="imagem de perfil"></div>
+            </section>
+            <section class="section-2">
+                <div class="sec2-top">
+                    <div class="profile-title">
+                        <h2 id="nickname_text" class="nickname-text">nickname</h2>
+                        <button onclick="editprofile"><img src="./img/icons/paintBrush_icon.svg"> </button>
+                    </div>
+                    <div class="profile-text">
+                        <h4 id="profire_text">descrição da pessoa</h4>
+                    </div> 
+                </div>
+                <div class="sec2-center">
+                    <div class="quests">
+                        <div class="quests-subtitle">
+                            <h3>Complete seu perfil</h3>
+                        </div>
+                        <div class="quests-profire">
+                            <section class="quest">
+                                <a href="#"><img src="css/img-background/JuninGamePrayPicaDasGalaxias.svg" alt="imagem das questoes"></a>
+                                <span id="percentage_1"></span>%
+                            </section>
+                            <section class="quest">
+                                <a href="#"><img src="css/img-background/JuninGamePrayPicaDasGalaxias.svg" alt="imagem das questoes"></a>
+                                <span id="percentage_1"></span>%
+                            </section>
+                            <section class="quest">
+                                <a href="#"><img src="css/img-background/JuninGamePrayPicaDasGalaxias.svg" alt="imagem das questoes"></a>
+                                <span id="percentage_1"></span>%
+                            </section>
+                            <section class="quest">
+                                <a href="#"><img src="css/img-background/student-L02008023668.svg" alt="imagem das questoes"></a>
+                                <span id="percentage_1"></span>%
+                            </section>
+                            <section class="quest">
+                                <a href="#"><img src="css/img-background/JuninGamePrayPicaDasGalaxias.svg" alt="imagem das questoes"></a>
+                                <span id="percentage_1"></span>%
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="sec2-bottom">
+                    <!-- <div class="form-left">
+                        <form>
+                            <div class="myresume">
+                                <img src="./img/icons/putFile_icon.svg" alt="Ícone de upload" >
+                                <input type="file" name="resume-file" id="resume_file" class="file-input">
+                            </div>
+                            <p>Enviar currículo</p>
+                            <div class="closeresume">
+                                <img src="./img/icons/x_icon.svg" alt="Ícone de upload" >
+                                <input type="reset" value="resume-file">
+                               
+                            </div>
+                        </form>
+                    </div> -->
+                    <div class="form-right">
+                            <h3>Informações de Contato:</h3>
+                            <div class="contact-profire">
+                                <form>
+                                    <label>Nome completo: </label><span class="nickname-text">nickname</span><br>
+                                    <label>Telefone de Contato: </label><span class="phone-text">telefone</span><br>
+                                    <label>E-mail de Contato: </label><span class="email-text">email</span><br>
+                                </form>
+                            </div>
+                            <div class="contact-socialMedia">
+                                <a href="#"><img src="./img/icons/instagram_icon.svg" alt="instagram"></a>
+                                <a href="#"><img src="./img/icons/linkedin_icon.svg" alt="linkedin"></a>
+                                <a href="#"><img src="./img/icons/github_icon.svg" alt="github"></a>
+                            </div>
+                    </div>
+                </div>
+
+            </section>
+            <section class="section-3">
+                <h1>Formulário de Cadastro</h1>
+                    <form> <!-- <fieldset></fieldset> -->
+                        
+                        <div class="container">
+                            
+                            <div class="item-1">
+                                <!-- Nome-->
+                                <label for="nome">Primeiro Nome</label>
+                                <input class="input-form" type="text" id="nome" name="nome" placeholder="Primeiro Nome" required><br><br>
+                            </div>
+                            <div class="item-3 ">
+                                <!--Sobrenome-->
+                                <label for="nome">Sobrenome</label>
+                                <input class="input-form" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required><br><br>
+                            </div>
+
+                            <div class="item-2 ">
+                                <!-- Telefone -->
+                                <label for="telefone">Telefone</label>
+                                <input class="input-form" type="tel" id="telefone" name="telefone" placeholder="Telefone" required><br><br>
+                            </div>
+
+                            <div class="item-7">
+                                <label >Escolaridade</label>
+                                <div class="select">
+                                    <!-- Escolaridade -->
+                                    <select class="input-form" id="escolaridade" name="escolaridade" required>
+                                        <option value="">Selecione a sua Escolaridade</option>
+                                        <option value="fundamental-incompleto">Ensino Fundamental Incompleto</option>
+                                        <option value="fundamental-completo">Ensino Fundamental Completo</option>
+                                        <option value="medio-incompleto">Ensino Médio Incompleto</option>
+                                        <option value="medio-completo">Ensino Médio Completo</option>
+                                        <option value="superior-incompleto">Ensino Superior Incompleto</option>
+                                        <option value="superior-completo">Ensino Superior Completo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="item-4 ">
+                                <!--Data de Nascimento-->
+                                <label for="data-nascimento">Nascimento:</label>
+                                <input  class="input-form" type="date" id="data-nascimento" name="data-nascimento" required><br><br>
+                            </div>
+
+                            <div class="item-5 ">
+                                <!-- Estado -->
+                                <label for="estado">Selecione seu Estado</label>
+                                <div class="select">
+                                    <select  class="input-form " id="id_estado" name="estado" onchange="selectEstado()" required>
+                                        <option value="">Estado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="item-6">
+                                
+                                <!-- Cidade -->
+                                <label for="estado">Selecione sua Cidade</label>
+                                <div class="select">
+                                    <select class="input-form" id="id_cidade" name="cidade" onchange="selectCidade()" required>
+                                        <option value="Selecione">Cidade</option>
+                                    </select><br>
+                                </div>
+                            </div>
+
+                            <div class="item-8">
+                                
+                                <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Descreva sua experiência..." required></textarea><br><br>
+                            </div>
+                        </div>
+                        <div class="form-buttom">
+                        <!-- Botão de Envio -->
+                        <button type="submit">Enviar</button>
+                    </div>
+                    </form>
+                    
+            </section>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="./js/perfil.js"></script>
+</body>
+</html>
