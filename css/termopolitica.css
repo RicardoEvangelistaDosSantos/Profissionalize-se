@@ -1,0 +1,41 @@
+/*deoxa a rolagem suave*/
+html {
+    scroll-behavior: smooth; /* Rola suavemente para as âncoras */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+
+/*cores*/
+:root{
+    --background_color: #0d0d2b;
+    --background_color_two: #131335; 
+    
+    --main_one: #A40148;
+    --main_two: #790034;
+    --second_color: rgb(46, 46, 98);
+
+    --text_one:#ffffff;
+    --text_two:#bdbdbd;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+body {
+    margin: 5% 10% 5% 10%;
+    background-color:var(--main_two);
+    color: white;
+}
+
+h2, h3 {
+    margin-top: 30px;
+}
