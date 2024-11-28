@@ -26,6 +26,14 @@ html {
     --text_two:#bdbdbd;
 }
 
+
+.section-line{
+    border: solid 1px;
+    border-left: var(--text_one) ;
+    width: 1px;
+    height: 100%;
+}
+
 .section {
     margin-bottom: 30px;
 }
