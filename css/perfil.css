@@ -24,6 +24,20 @@
     margin-bottom: 100px;
     box-shadow: 2px 2px 20px black;
 }
+/*botão de voltar*/
+.return{
+    position: fixed;
+    left: 40px;
+    top: 30px;
+}
+
+.return img:hover {
+    transform: scale(1.1);
+}
+.return  img:active{
+    transform:scale(0.9);
+    filter: brightness(0) saturate(100%) invert(7%) sepia(91%) saturate(6405%) hue-rotate(328deg) brightness(106%) contrast(100%);
+}
 main{
     display: flex;
     background-color: var(--background_color);
@@ -201,7 +215,9 @@ main{
 
 .container{
     display: grid;
-    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 90%;
     grid-template-columns: repeat(17,1fr);
     grid-template-areas: 
     "item-1 item-1 item-1 item-1 item-1 item-1 item-1 item-1 . item-3 item-3 item-3 item-3 item-3 item-3 item-3 item-3"
@@ -238,10 +254,8 @@ main{
 
 
 
-input[type="date"] {
-    accent-color: rgb(255, 255, 255) !important ;/* Altere para a cor desejada */
-}
-.section-3 input{
+
+/* .section-3 input{
     padding: 12px;
     font-size: 1rem;
     color: var(--text_one);
@@ -266,24 +280,115 @@ input[type="date"] {
     background-color: var(--second_border_color);
     transition: background-color 0.1s;
     
-}
+} */
 
-.form-buttom button{
-    width: 300px;
-    padding: 12px;
-    font-size: 1rem;
-    color: #ffffff;
-    background-color: var(--main_one);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 
-}
+
+
+/*inputs*/
+/* form starting stylings ------------------------------- */
+.section-3 .group 			  { 
+    position:relative; 
+    margin-bottom:45px; 
+  }
+  .section-3 input 				{
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:100%;
+    height: 2.6em;
+    border:none;
+    border-bottom:1px solid var(--text_two);
+    background-color: transparent;
+    color: var(--text_one);
+  }
+  .section-3 input:focus{ outline:none; 
+    border: none;}     /*---------------------------------------------------------*/
+  
+  /* LABEL ======================================= */
+  .section-3 label 				 {
+    color:var(--text_two); 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+  
+  /* active state */
+  .section-3 input:focus ~ label, input:valid ~ label 		{
+    top:-20px;
+    font-size:14px;
+    color:var(--text_one);
+    
+  }
+  
+  /* BOTTOM BARS ================================= */
+  .section-3 .bar 	{ position:relative; display:block; width:300px; }
+  .section-3 .bar:before, .bar:after 	{
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:var(--text_one); 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+  .section-3 .bar:before {
+    left:50%;
+  }
+  .section-3 .bar:after {
+    right:50%; 
+  }
+  
+  /* active state */
+  .section-3 input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+    
+  }
+  
+  /* HIGHLIGHTER ================================== */
+  .section-3 .highlight {
+    position:absolute;
+    height:60%; 
+    width:100px; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  
+  /* active state */
+  .section-3 input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+  }
+  
+  /* ANIMATIONS ================ */
+  @-webkit-keyframes inputHighlighter {
+      from { background: var(--text_one); }
+    to 	{ width:0; background:transparent; }
+  }
+  @-moz-keyframes inputHighlighter {
+      from { background: var(--text_one); }
+    to 	{ width:0; background:transparent; }
+  }
+  @keyframes inputHighlighter {
+      from { background: var(--text_one); }
+    to 	{ width:0; background:transparent; }
+  }
+
 
 
 /*section*/
-select {
+.section-3 select {
     /* Reset Select */
     appearance: none;
     outline: 10px red;
@@ -292,40 +397,77 @@ select {
     flex: 1;
     padding: 0 1em;
     color: #fff;
-    background-color: transparent;
+    background-color: var(--main_two);
     border: 2px solid var(--text_two);
     border-left: none;
     border-right: none;
     border-top: none;
     background-image: none;
     cursor: pointer;
+
   }
   /* Remove IE arrow */
-  select::-ms-expand {
+  .section-3 select::-ms-expand {
     display: none;
   }
 
-  .select {
+  .section-3 .select {
     position: relative;
     display: flex;
     height: 3em;
     border-radius: .25em;
     overflow: hidden;
+    
   }
 
   /* Arrow */
-.select::after {
+.section-3 .select::after {
     content: '\25BC';
     position: absolute;
     top: 0;
     right: 0;
     padding: 1em;
-
     transition: .25s all ease;
     pointer-events: none;
+   
+
   }
+ 
   /* Transition */
-.select:hover::after {
-    color: #f39c12;
+.section-3 .select:hover::after {
+    color: #000000;
+    background-color: var(--second_border_color);
   }
   
+
+
+/*bottom*/
+  .section-3 .form-buttom button{
+    width: 300px;
+    padding: 12px;
+    font-size: 1rem;
+    color: var(--background_color);
+    background-color: var(--text_one);
+    border: none;
+    border-bottom: solid var(--background_color);
+    border-right: solid var(--background_color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease,transform 0.1s ease;
+    margin-bottom: 30px;
+}
+.section-3 button:active{
+    transform: scale(0.9);
+    
+}
+
+
+.section-3 textarea {
+    margin-top: 60px;
+    background-color: var(--borde_color);
+    height: 10em;
+    color: var(--text_one);
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 18px;
+}

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/perfil.css" rel=stylesheet>
-    <title>perfil Profissionalize-sse</title>
+    <title>perfil Profissionalize-se</title>
 </head>
 <body>
     <main>
+        <a class="return" draggable="false" href="./vagas.html"><img draggable="false" src="img/icons/return_icon.svg" alt="botão para voltar"/></a>
         <div class="div-main">
             <section class="section-1">
                 <div  class="img-radion" src="img/background/JuninGamePrayPicaDasGalaxias.svg" alt="imagem de perfil"></div>
@@ -86,29 +87,43 @@
             </section>
             <section class="section-3">
                 <h1>Formulário de Cadastro</h1>
-                    <form> <!-- <fieldset></fieldset> -->
+                    <form> 
                         
                         <div class="container">
-                            
+                        
                             <div class="item-1">
-                                <!-- Nome-->
-                                <label for="nome">Primeiro Nome</label>
-                                <input class="input-form" type="text" id="nome" name="nome" placeholder="Primeiro Nome" required><br><br>
+                                <div class="group">      
+                                    <!-- Nome-->
+                                    <input type="text" id="nome" name="nome"  required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label for="nome">Primeiro Nome</label>
+                                </div>
+
                             </div>
                             <div class="item-3 ">
-                                <!--Sobrenome-->
-                                <label for="nome">Sobrenome</label>
-                                <input class="input-form" type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required><br><br>
+                                <div class="group">      
+                                    <!--Sobrenome-->
+                                    <input type="text" id="sobrenome" name="sobrenome" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label for="nome">Sobrenome</label>
+                                </div>
                             </div>
 
                             <div class="item-2 ">
-                                <!-- Telefone -->
-                                <label for="telefone">Telefone</label>
-                                <input class="input-form" type="tel" id="telefone" name="telefone" placeholder="Telefone" required><br><br>
+                                <div class="group">      
+                                    <!--Telefone -->
+                                    <input type="tel" id="telefone" name="telefone" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label for="nome">Telefone</label>
+                                </div>
+
                             </div>
 
                             <div class="item-7">
-                                <label >Escolaridade</label>
+
                                 <div class="select">
                                     <!-- Escolaridade -->
                                     <select class="input-form" id="escolaridade" name="escolaridade" required>
@@ -123,17 +138,14 @@
                                 </div>
                             </div>
 
-
-
                             <div class="item-4 ">
-                                <!--Data de Nascimento-->
-                                <label for="data-nascimento">Nascimento:</label>
+
+                                <!--Data de Nascimento--> 
                                 <input  class="input-form" type="date" id="data-nascimento" name="data-nascimento" required><br><br>
                             </div>
 
                             <div class="item-5 ">
-                                <!-- Estado -->
-                                <label for="estado">Selecione seu Estado</label>
+                                <!-- Estado --> 
                                 <div class="select">
                                     <select  class="input-form " id="id_estado" name="estado" onchange="selectEstado()" required>
                                         <option value="">Estado</option>
@@ -144,23 +156,21 @@
                             <div class="item-6">
                                 
                                 <!-- Cidade -->
-                                <label for="estado">Selecione sua Cidade</label>
                                 <div class="select">
                                     <select class="input-form" id="id_cidade" name="cidade" onchange="selectCidade()" required>
                                         <option value="Selecione">Cidade</option>
-                                    </select><br>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="item-8">
-                                
+                            <div class="item-8"> 
                                 <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Descreva sua experiência..." required></textarea><br><br>
                             </div>
                         </div>
                         <div class="form-buttom">
-                        <!-- Botão de Envio -->
-                        <button type="submit">Enviar</button>
-                    </div>
+                            <!-- Botão de Envio -->
+                            <button type="submit">Enviar</button>
+                        </div>
                     </form>
                     
             </section>
