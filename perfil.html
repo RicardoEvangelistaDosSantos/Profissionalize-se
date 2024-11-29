@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
     <link href="./css/perfil.css" rel=stylesheet>
     <title>perfil Profissionalize-se</title>
 </head>
 <body>
+
     <main>
+
         <a class="return" draggable="false" href="./vagas.html"><img draggable="false" src="img/icons/return_icon.svg" alt="botão para voltar"/></a>
-        <div class="div-main">
+        <div class="div-main ">
+           
+
             <section class="section-1">
+                
+                <span class="picture_image"></span> 
                 <div  class="img-radion" src="./css/img-background/icone_1.svg" alt="imagem de perfil"></div>
             </section>
             <section class="section-2">
@@ -163,6 +170,30 @@
                                 </div>
                             </div>
 
+                            <div class="item-9">
+                                <div class="group">
+                                    <input type="color">
+                                </div>
+                            </div>
+                                <div class="item-10">
+                                    <div class="group">
+                                       
+                                        <label for="file-icon" class="custom-file-label">Selecionar icone</label>
+                                        <input type="file" id="file_icon" class="file-input" name="file-icon">
+                                        
+                                    </div>
+                                </div>
+
+                            
+                            <div class="item-11">
+                                <div class="group">
+                                    <label for="file-banner" class="custom-file-label">Selecionar banner</label>
+                                    <input type="file" id="file_banner" class="file-input" name="file-banner">
+                                </div>
+                            </div>
+
+
+
                             <div class="item-8"> 
                                 <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Descreva sua experiência..." required></textarea><br><br>
                             </div>
@@ -174,9 +205,21 @@
                     </form>
                     
             </section>
+
+            <section class="section-cut" style="display: none;">
+                <div id="cropper-container" style="display: none;">
+                    <div class="cropper-wrapper">
+                    <img id="cropper-image" />
+                    <button id="crop-button">Recortar</button>
+                    <button id="cancel-button">Cancelar</button>
+                    </div>
+                </div>
+        </section>
         </div>
+        
     </main>
     <footer></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script src="./js/perfil.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@
 .section-2{
     margin-bottom: 50px;
     box-shadow: 2px 2px 20px black;
+    
 }
 /*botão de voltar*/
 .return{
@@ -62,10 +63,12 @@ main{
     width: 100%;
     height: 300px;
     background-color: rgb(189, 199, 199);
+
     justify-content: center;
     align-items: end;
     border: #0d0d2b solid 2px;
 }
+
 .section-1 .img-radion {
     position: absolute;
     border: #0d0d2b solid;
@@ -262,6 +265,7 @@ main{
     "item-1 item-1 item-1 item-1 item-1 item-1 item-1 item-1 . item-3 item-3 item-3 item-3 item-3 item-3 item-3 item-3"
     "item-2 item-2 item-2 item-2 item-2 . item-7 item-7 item-7 item-7 item-7 . item-4 item-4 item-4 item-4 item-4"
     "item-5 item-5 item-5 item-5 item-5 item-5 item-5 item-5 .  item-6 item-6 item-6 item-6 item-6 item-6 item-6 item-6 "
+    "item-9 item-9 item-9 item-9 item-9 . item-10 item-10 item-10 item-10 item-10 .  item-11 item-11 item-11 item-11 item-11"
     "item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8"
     ;   
     
@@ -285,13 +289,14 @@ main{
 .item-7{grid-area: item-7;}
 .item-8{grid-area: item-8;}
 .item-9{grid-area: item-9;}
+.item-10{grid-area: item-10;}
+.item-11{grid-area: item-11;}
+
 
 .section-3 .input-form{
     width: 100%;
     
 }
-
-
 
 
 /* .section-3 input{
@@ -477,7 +482,38 @@ main{
     color: #000000;
     background-color: var(--second_border_color);
   }
+ 
   
+
+
+
+/*input file*/
+
+.section-3 input[type="file"]{
+  position: absolute;
+  margin-top: 10px;
+  width: 100%;
+  opacity: 0; /* Torna o input invisível */
+}
+/* Estiliza o botão personalizado */
+.custom-file-label {
+  display: inline-block;
+  position: relative;
+  margin-top: 10px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  border: solid 2px rgb(255, 255, 255);
+  width: 100%;
+
+
+}
+
+
+
+
+
 
 
 /*bottom*/
@@ -500,7 +536,7 @@ main{
     
 }
 
-
+/*texarea*/
 .section-3 textarea {
     margin-top: 60px;
     background-color: var(--borde_color);
@@ -509,4 +545,52 @@ main{
     border-radius: 10px;
     padding: 20px;
     font-size: 18px;
+}
+
+
+.section-cut {
+  position: relative; /* Garante que os filhos sejam posicionados em relação à seção */
+  width: 100%; /* Garante que ocupe a largura completa */
+  height: 500px; /* Garante que ocupe a altura completa */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main_two);
+  margin: 20px;
+  box-shadow: 2px 2px 20px black;
+  border-radius: 10px;
+  color: var(--text_one);
+ 
+}
+
+#cropper-container {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: 100%; 
+  
+}
+#cropper-image{
+  width: 80%;
+}
+
+.cropper-wrapper {
+  border-radius: 8px;
+  max-width: 100%; 
+  max-height: 100%; 
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.cropper-wrapper button{
+  background-color: var(--main_one);
+  border: none;
+  border: solid var(--main_two);
+  border-radius: 10px;
+  height: 40px;
+  z-index: 3;
 }
