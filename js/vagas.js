@@ -27,6 +27,39 @@ function calcularTempoPostagem(dataPostagem) {
 }
 
 // Função para carregar as vagas
+function loadVagasRecomendadas() {
+    fetch('http://localhost:3000/api/vagasrecomendadas')
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById('section-vaga-recomendada');
+            list.innerHTML = '';
+            data.forEach(vaga => {
+                const tempoPostagem = calcularTempoPostagem(vaga.dt_postagem);
+                list.innerHTML +=
+                    `<div class="vaga">
+                        <div class="header-vaga">
+                                <div>
+                                <h4>${vaga.empresa}</h4>
+                                <h2>${vaga.titulo}</h2>
+                                <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
+                            </div>
+                                <p>${tempoPostagem}</span>
+                        </div>
+                        <div class="body-vaga">
+                            <p>${vaga.descricao}</p>
+                            <p><a href="${vaga.url_vaga}" target="_blank">Ver mais detalhes</a></p>
+                        </div>
+                        <div class="footer-vaga">
+                            <p>${vaga.status_vaga}</p>
+                        </div>
+                    </div>`;
+            });
+        })
+        .catch(err => console.error('Erro ao carregar as vagas:', err));
+}
+
+loadVagasRecomendadas();
+
 function loadVagas() {
     fetch('http://localhost:3000/api/vagas')
         .then(response => response.json())
