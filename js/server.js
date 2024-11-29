@@ -38,8 +38,9 @@ app.get('/api/vagas', (req, res) => {
 });
 
 // Rota GET para listar todas as vagas recomendadas
-app.get('/api/vagas', (req, res) => {
-    db.query('SELECT * FROM vaga', (err, results) => {
+app.get('/api/vagasrecomendadas', (req, res) => {
+    const { id } = req.params;
+    db.query('SELECT v.* FROM vaga v JOIN teste_voc tv ON v.id_setor = tv.id_setor JOIN perfil p ON tv.id_perfil = p.id_perfil WHERE p.id_perfil = ?', (err, results) => {
         if (err) {
             console.error('Erro ao buscar vagas: ', err);
             return;
@@ -50,9 +51,9 @@ app.get('/api/vagas', (req, res) => {
 
 // Rota POST para adicionar um novo usuário
 app.post('/api/usuarios', (req, res) => {
-    const { cpf, email, senha } = req.body;
-    const sql = 'INSERT INTO usuario (cpf, email, senha) VALUES (?, ?, ?)';
-    db.query(sql, [cpf, email, senha], (err, result) => {
+    const { cpf, nome_completo, email, senha } = req.body;
+    const sql = 'INSERT INTO usuario (cpf, nome_completo email, senha) VALUES (?, ?, ?, ?)';
+    db.query(sql, [cpf, nome_completo, email, senha], (err, result) => {
         if (err) {
             console.error('Erro ao cadastrar um usuário: ', err);
             res.status(500).send('Erro ao inserir dados');
