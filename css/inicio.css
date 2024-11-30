@@ -329,8 +329,9 @@ body{
     flex-direction: column;
     align-items: center;
     margin: 50px;
-    border: solid 1px black;
-    border-radius: 20px 20px 20px 20px;
+    /* border: solid 1px black;
+    border-radius: 20px 20px 20px 20px; */
+    transform:scale(1.8);
 }
 
 .sec3-bottom a{

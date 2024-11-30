@@ -92,3 +92,34 @@ function loadVagas() {
 }
 
 loadVagas();
+
+
+
+
+/*CARROSSEL*/
+
+let arrow = 1
+function arrowLeft() {
+    if(arrow > 0 ){
+        arrow = arrow - 1
+       
+    }
+
+    document.getElementById(`Cradio_${arrow}`).checked = true
+    console.log("left:",arrow)
+}
+
+function arrowRight() {
+    if(arrow < 3 ){
+        arrow = arrow + 1
+       
+    }else{
+        arrow = 1
+    }
+    document.getElementById(`Cradio_${arrow}`).checked = true
+    console.log("right:",arrow)
+    
+}
+
+
+
