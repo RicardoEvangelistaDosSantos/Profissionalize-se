@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <main>
+    <main id="main">
 
         <a class="return" draggable="false" href="./vagas.html"><img draggable="false" src="img/icons/return_icon.svg" alt="botão para voltar"/></a>
         <div class="div-main ">
@@ -18,7 +18,7 @@
             <section class="section-1">
                 
                 <span class="picture_image"></span> 
-                <div  class="img-radion" src="./css/img-background/icone_1.svg" alt="imagem de perfil"></div>
+                <div  class="img-radion" alt="imagem de perfil"></div>
             </section>
             <section class="section-2">
                 <div class="sec2-top">
@@ -92,7 +92,7 @@
                 </div>
 
             </section>
-            <section class="section-3">
+            <section class="section-3" style="display: none;">
                 <h1>Formulário de Cadastro</h1>
                     <form> 
                         
@@ -172,7 +172,7 @@
 
                             <div class="item-9">
                                 <div class="group">
-                                    <input type="color">
+                                    <input type="color" onchange="backgroundColor(this.value)">
                                 </div>
                             </div>
                                 <div class="item-10">
@@ -192,7 +192,9 @@
                                 </div>
                             </div>
 
-
+                            <div class="item-12">
+                                <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Descreva sua Descrição" required></textarea><br><br>
+                            </div>
 
                             <div class="item-8"> 
                                 <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Descreva sua experiência..." required></textarea><br><br>
@@ -206,6 +208,7 @@
                     
             </section>
 
+            
             <section class="section-cut" style="display: none;">
                 <div id="cropper-container" style="display: none;">
                     <div class="cropper-wrapper">

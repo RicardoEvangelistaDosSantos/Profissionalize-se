@@ -1,3 +1,4 @@
+//#region VAGAS
 // Função para calcular há quanto tempo uma vaga foi postada
 function calcularTempoPostagem(dataPostagem) {
     const datePostagem = new Date(dataPostagem);
@@ -93,30 +94,46 @@ function loadVagas() {
 
 loadVagas();
 
+//#endregion
 
 
 
 /*CARROSSEL*/
 
 let arrow = 1
+let num = 1
+const section_carrossel = document.getElementById("sec_tinder")
+const main_carousel  = document.getElementById("carousel")
 function arrowLeft() {
     if(arrow > 0 ){
         arrow = arrow - 1
        
     }
 
-    document.getElementById(`Cradio_${arrow}`).checked = true
+    const ragion = document.getElementById(`Cradio_${arrow}`)
+    ragion.checked = true
     console.log("left:",arrow)
 }
 
 function arrowRight() {
-    if(arrow < 3 ){
-        arrow = arrow + 1
+    
+    const radios = document.querySelectorAll('input[name="position"]');
+
+     
+    if(arrow < radios.length ){
        
+        arrow = arrow + 1
+
     }else{
         arrow = 1
+        section_carrossel.innerHTML += `<input type="radio" name="position" id="Cradio_${arrow+1} style="display: none;"/>`
+        main_carousel.innerHTML += `<div class="item" ></div>"/>`
+        console.log("arrow: ",radios.length)
     }
-    document.getElementById(`Cradio_${arrow}`).checked = true
+
+
+    const ragion = document.getElementById(`Cradio_${arrow}`)
+    ragion.checked = true
     console.log("right:",arrow)
     
 }

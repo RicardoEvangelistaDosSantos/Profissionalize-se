@@ -63,7 +63,9 @@ main{
     width: 100%;
     height: 300px;
     background-color: rgb(189, 199, 199);
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     justify-content: center;
     align-items: end;
     border: #0d0d2b solid 2px;
@@ -78,6 +80,9 @@ main{
     bottom: -20px;
     background-image:url("./img-background/icone_1.svg") ; /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
     background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 } 
 
 
@@ -266,6 +271,7 @@ main{
     "item-2 item-2 item-2 item-2 item-2 . item-7 item-7 item-7 item-7 item-7 . item-4 item-4 item-4 item-4 item-4"
     "item-5 item-5 item-5 item-5 item-5 item-5 item-5 item-5 .  item-6 item-6 item-6 item-6 item-6 item-6 item-6 item-6 "
     "item-9 item-9 item-9 item-9 item-9 . item-10 item-10 item-10 item-10 item-10 .  item-11 item-11 item-11 item-11 item-11"
+    "item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12 item-12"
     "item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8 item-8"
     ;   
     
@@ -279,6 +285,9 @@ main{
     flex-direction: column;
 
 } 
+.item-9,.item-10,.item-11{
+  margin-top: 40px;
+}
 
 .item-1{grid-area: item-1;}
 .item-2{grid-area: item-2;}
@@ -291,40 +300,13 @@ main{
 .item-9{grid-area: item-9;}
 .item-10{grid-area: item-10;}
 .item-11{grid-area: item-11;}
+.item-12{grid-area: item-12;}
 
 
 .section-3 .input-form{
     width: 100%;
     
 }
-
-
-/* .section-3 input{
-    padding: 12px;
-    font-size: 1rem;
-    color: var(--text_one);
-    border: none;
-    outline: none;
-    background-color: transparent;
-    border: 2px solid var(--text_two);
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    transition: border 0.3s, border-radius 0.3s, background-color 0.3s;
-    
-}
-
-.section-3 input:focus {
-    border: 2px solid var(--text_two);
-    border-radius: 20px;
-    background-color: var(--second_border_color);
-   
-}
-.section-3 input:hover{
-    background-color: var(--second_border_color);
-    transition: background-color 0.1s;
-    
-} */
 
 
 
@@ -429,6 +411,12 @@ main{
     to 	{ width:0; background:transparent; }
   }
 
+.section-3 input[type="color"]{
+  border: none;
+  height: 73px;
+  margin-top: 5px;
+
+}
 
 
 /*section*/
@@ -484,16 +472,13 @@ main{
   }
  
   
-
-
-
 /*input file*/
 
 .section-3 input[type="file"]{
   position: absolute;
   margin-top: 10px;
   width: 100%;
-  opacity: 0; /* Torna o input invisível */
+  opacity: 0; 
 }
 /* Estiliza o botão personalizado */
 .custom-file-label {
@@ -509,11 +494,6 @@ main{
 
 
 }
-
-
-
-
-
 
 
 /*bottom*/
@@ -538,7 +518,7 @@ main{
 
 /*texarea*/
 .section-3 textarea {
-    margin-top: 60px;
+    margin-top: 5px;
     background-color: var(--borde_color);
     height: 10em;
     color: var(--text_one);
@@ -549,9 +529,9 @@ main{
 
 
 .section-cut {
-  position: relative; /* Garante que os filhos sejam posicionados em relação à seção */
-  width: 100%; /* Garante que ocupe a largura completa */
-  height: 500px; /* Garante que ocupe a altura completa */
+  position: relative; 
+  width: 100%; 
+  height: 500px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -568,7 +548,7 @@ main{
   position: absolute; 
   top: 0;
   left: 0;
-  max-width: 100%;
+ width: 100%;
   height: 100%; 
   
 }
