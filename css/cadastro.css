@@ -28,6 +28,14 @@ body {
     color: #ffffff;
 }
 
+
+
+.input-terms label {
+    margin-left: 8px;  /* Espaço entre a caixa de seleção e o texto */
+    font-size: 14px;
+}
+
+
 /* Estilização principal */
 main {
     display: flex;
@@ -217,6 +225,8 @@ main {
 .table-down button:active{
     transform: scale(0.9);
 }
+
+
 /*termos de uso*/
 .terms{
     display: flex;
@@ -240,7 +250,6 @@ main {
     margin-right: 10px; 
     width: 50%;
 }
-
 
 
 /* Link para cadastro */

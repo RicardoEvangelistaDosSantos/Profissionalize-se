@@ -34,8 +34,23 @@ app.post("/login", (req, res) => {
     return res.status(400).json({ mensagem: "Usuário e senha são obrigatórios!" });
   }
 
-  const sql = "SELECT * FROM usuario WHERE email = ?";
-  db.query(sql, [email], async (err, results) => {
+  // Verifica se o email parece ser um CPF (9 dígitos, sem ponto ou traço)
+  const isCpf = /^\d{11}$/.test(email);
+
+  let sql = "SELECT * FROM usuario WHERE ";
+  let params = [];
+
+  if (isCpf) {
+    // Se for um CPF, procurar pelo CPF
+    sql += "cpf = ?";
+    params = [email];
+  } else {
+    // Se não for CPF, procurar pelo email
+    sql += "email = ?";
+    params = [email];
+  }
+
+  db.query(sql, params, async (err, results) => {
     if (err) {
       return res.status(500).json({ mensagem: "Erro no banco de dados", erro: err });
     }
