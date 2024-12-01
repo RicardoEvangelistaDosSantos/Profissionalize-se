@@ -40,7 +40,6 @@ main {
 }
 
 
-
 /* Seção esquerda (título) */
 .section-left {
     flex: 1;
@@ -87,34 +86,31 @@ main {
     position: absolute;
     height: 100%;
     right: -10px;
-    animation: key_cursor .6s infinite, key_del 10s steps(15) 1 forwards;
+    animation: key_cursor .5s infinite, key_del 8s steps(15) 1 forwards;
     width: calc(100% + 10px);
     background-color: var(--background_color);
 }
 @keyframes key_del {
-    5%,20%,25%,40%,45%,60%,65%{
-        width: calc(100% + 10px);
+    0%, 33%, 66% {
+        width: calc(100% + 10px); /* Expandir */
     }
-    10%,15%,30%,35%,50%,55%,70%,75%{
-        width: 0;
+    10%, 25%, 40%, 55%, 70% {
+        width: 0; /* Reduzir */
     }
-    95%,100%{
-        width: 0;
+    95%, 100% {
+        width: 0; /* Finalizar no 0 */
     }
 }
 @keyframes key_not {
-    0%,25%{
+    0%, 33% {
         content: "ização";
     }
-    26%,50%{
-        content:"izado";
+    34%, 66% {
+        content: "izar";
     }
-    51%,75%{
-        content:"izar"
-    }
-    76%,100%{
-        content:"ize-se"
-    }  
+    67%, 100% {
+        content: "ize-se";
+    } 
 }
 @keyframes key_cursor {
     0%{
@@ -168,7 +164,6 @@ main {
 }
 .table-center input {
     width: 100%;
-    max-width: 600px; 
     padding: 0px 15px 0px 15px; 
 
 }

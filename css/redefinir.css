@@ -69,11 +69,11 @@ main {
     position: absolute;
     height: 100%;
     right: -10px;
-    animation: key_cursor .6s infinite, key_del 10s steps(15) 1 forwards;
+    animation: key_cursor .6s infinite/*, key_del 10s steps(15) 1 forwards*/;
     width: calc(100% + 10px);
     background-color: var(--background_color);
 }
-@keyframes key_del {
+/* @keyframes key_del {
     5%,20%,25%,40%,45%,60%,65%{
         width: calc(100% + 10px);
     }
@@ -97,7 +97,7 @@ main {
     76%,100%{
         content:"ize-se"
     }  
-}
+} */
 @keyframes key_cursor {
     0%{
         border-left: 2px solid var(--background_color);
