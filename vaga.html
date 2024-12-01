@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/vagas.css">
+  <title>Vagas Profissionaliza-se</title>
+</head>
+
+<body>
+  <header>
+    <!--navegação - NAV-->
+
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid  ">
+        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="collapse rounded navbar-collapse justify-content-center " id="navbarNavAltMarkup">
+          <div class="navbar-nav justify-content-center rounded-pill">
+            <a class="nav-link " aria-current="page" href="./inicio.html">Inicio</a>
+            <a class="nav-link active " href="./vagas.html">Vagas</a></a>
+            <a class="nav-link" href="./perfil.html">Perfil</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header-text  ">
+      <p id="nickname" class="nickname  ">Nickname User</p>
+    </div>
+  </header>
+  <main>
+
+    <section class="section-tinder">         
+ 
+      <input type="radio" name="position" id="Cradio_1" checked />
+      <input type="radio" name="position" id="Cradio_2" />
+      <input type="radio" name="position" id="Cradio_3"/>
+      <div class="carousel-button">
+        <button id="arrow_left" onclick="arrowLeft()"><img src="./img/icons/arrow_left.svg" alt=""></button>
+        <button id="arrow_star"><img src="./img/icons/favoriteStar_icon.svg" alt=""></button>
+        <button id="arrow_right" onclick="arrowRight()"><img src="./img/icons/arrow_right.svg" alt=""></button>
+      </div> 
+      <main id="carousel">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        
+      <main>
+    </section>
+    <section class="section-search ">
+      <form class="search-form container d-flex justify-content-center " role="search">
+
+        <div class="input-group rounded-pill">
+          <input class="search-text form-control border-0 bg-transparent " type="search" placeholder="Search"
+            aria-label="Search">
+          <img src="./img/icons/line.svg">
+
+          <input id="search_dropdown_locate " class="search-text form-control border-0 bg-transparent" type="search"
+            placeholder="Localização" aria-label="Search" data-bs-toggle="dropdown" aria-expanded="false">
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"
+                onclick="document.getElementById('search_dropdown_locate').value='Action'; return false;">Action</a>
+            </li>
+            <li><a class="dropdown-item" href="#"
+                onclick="document.getElementById('search_dropdown_locate').value='Another action'; return false;">Another
+                action</a></li>
+            <li><a class="dropdown-item" href="#"
+                onclick="document.getElementById('search_dropdown_locate').value='Something else here'; return false;">Something
+                else here</a></li>
+          </ul>
+        </div>
+        <button class="search-buttom btn rounded-pill  " type="submit"><img src="./img/icons/search_icon.svg"></button>
+      </form>
+    </section>
+    <section id="section-vaga-recomendada">
+    </section>
+    <section id="section-vaga">
+    </section>
+  </main>
+  <script src="js/appvaga.js"></script>
+  <script src="js/vaga.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

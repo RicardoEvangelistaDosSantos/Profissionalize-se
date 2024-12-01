@@ -1,4 +1,3 @@
-//#region VAGAS
 // Função para calcular há quanto tempo uma vaga foi postada
 function calcularTempoPostagem(dataPostagem) {
     const datePostagem = new Date(dataPostagem);
@@ -29,7 +28,7 @@ function calcularTempoPostagem(dataPostagem) {
 
 // Função para carregar as vagas
 function loadVagasRecomendadas() {
-    fetch('http://localhost:3000/api/vagasrecomendadas')
+    fetch('http://localhost:3002/api/vagasrecomendadas')
         .then(response => response.json())
         .then(data => {
             const list = document.getElementById('section-vaga-recomendada');
@@ -62,7 +61,7 @@ function loadVagasRecomendadas() {
 loadVagasRecomendadas();
 
 function loadVagas() {
-    fetch('http://localhost:3000/api/vagas')
+    fetch('http://localhost:3002/api/vagas')
         .then(response => response.json())
         .then(data => {
             const list = document.getElementById('section-vaga');
@@ -94,46 +93,26 @@ function loadVagas() {
 
 loadVagas();
 
-//#endregion
-
-
-
 /*CARROSSEL*/
-
 let arrow = 1
-let num = 1
-const section_carrossel = document.getElementById("sec_tinder")
-const main_carousel  = document.getElementById("carousel")
 function arrowLeft() {
     if(arrow > 0 ){
         arrow = arrow - 1
        
     }
 
-    const ragion = document.getElementById(`Cradio_${arrow}`)
-    ragion.checked = true
+    document.getElementById(`Cradio_${arrow}`).checked = true
     console.log("left:",arrow)
 }
 
 function arrowRight() {
-    
-    const radios = document.querySelectorAll('input[name="position"]');
-
-     
-    if(arrow < radios.length ){
-       
+    if(arrow < 3 ){
         arrow = arrow + 1
-
+       
     }else{
         arrow = 1
-        section_carrossel.innerHTML += `<input type="radio" name="position" id="Cradio_${arrow+1} style="display: none;"/>`
-        main_carousel.innerHTML += `<div class="item" ></div>"/>`
-        console.log("arrow: ",radios.length)
     }
-
-
-    const ragion = document.getElementById(`Cradio_${arrow}`)
-    ragion.checked = true
+    document.getElementById(`Cradio_${arrow}`).checked = true
     console.log("right:",arrow)
     
 }
