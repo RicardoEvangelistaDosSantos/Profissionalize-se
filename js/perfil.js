@@ -20,7 +20,7 @@ fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome`
    
 
 function selectEstado() {
-    const estado = id_estado.value;
+    estado = id_estado.value;
     id_cidade.innerHTML = `<option value="">Carregando...</option>`;
    
     // Verifica se as cidades já estão em cache
@@ -35,7 +35,7 @@ function selectEstado() {
                 populateCidades(data);
             });
     }
-    console.log(id_estado.value)
+
 }
 //cria as Cidades no select
 function populateCidades(cidades) {
@@ -46,51 +46,67 @@ function populateCidades(cidades) {
         `;
     });
 }
-function selectCidade() {return id_cidade.value }
 
-// console.log("valor cidade",id_cidade.value,"nome cidade",id_cidade.textContent)
+function selectCidade() {
+    cidade = id_cidade.value;
+}
+
+
 
 //#endregion
 
 //#region INPUT COLOR
-function backgroundColor(color) {
-  document.getElementById('main').style.backgroundColor = color
-}
+
+const inputColor = document.getElementById("inputColor")
+const background = document.getElementById('main')
+addEventListener('change', (event) => {
+    color = event.target.value
+    background.style.backgroundColor = color
+})
 
 //#endregion
 
 //#region INPUT IMAGEM (BANNER E ICONE)
 
-/*banner*/
-const inputFile = document.querySelector("#file_banner");
-const inputIcon = document.querySelector("#file_icon");
-
-const sect = document.querySelector(".section-1");
-const sect_icon = document.querySelector(".img-radion");
-const sec_cut = document.querySelector(".section-cut");
-
-const cropperContainer = document.getElementById("cropper-container");
-const cropperImage = document.getElementById("cropper-image");
-const cropButton = document.getElementById("crop-button");
-const cancelButton = document.getElementById("cancel-button");
-
-let cropper = null;
 let currentInput = null; // Variável para armazenar qual input foi utilizado
 let container = null;
 
-//---------------pegar imagem
+/*-- evento de banner -- */
+const inputFile = document.querySelector("#file_banner");
+const section_1 = document.querySelector(".section-1");
 
-// Função para lidar com o carregamento de imagem
+inputFile.addEventListener("change", function (e) {
+  currentInput = inputFile; // Define o input atual como inputFile
+  container = section_1
+  getImg(e);
+});
+
+/*-- evento de icone --*/
+const inputIcon = document.querySelector("#file_icon");
+const section_icon = document.querySelector(".img-radion");
+inputIcon.addEventListener("change", function (e) {
+  currentInput = inputIcon; // Define o input atual como inputIcon
+  container = section_icon
+  getImg(e);
+});
+
+const section_cropper = document.querySelector(".section-cut");
+const cropperContainer = document.getElementById("cropper-container");
+const cropperImage = document.getElementById("cropper-image");
+let cropper = null;
+
+// --Função de tratamento de imagem --
 function getImg(_file) {
   const file = _file.target.files[0];
   if (file) {
     const reader = new FileReader();
 
+    //quando for carregado
     reader.onload = function (event) {
-      cropperImage.src = event.target.result; // Define a imagem no elemento <img>
+      cropperImage.src = event.target.result;
       
-      // Mostra o container do cropper
-      sec_cut.style.display = "block";
+      // Mostra o container 
+      section_cropper.style.display = "block";
       cropperContainer.style.display = "block"; 
 
       // Inicializa o cropper.js
@@ -101,12 +117,8 @@ function getImg(_file) {
       });
 
       // Rolagem para a section-cut
-      sec_cut.scrollIntoView({
-        behavior: 'instant', // Rolagem instantânea
-        block: 'center' // Alinha o item no centro da tela
-      });
-    };
-
+      section_cropper.scrollIntoView({ behavior: 'instant', block: 'center'  });
+  };
     reader.readAsDataURL(file);
   }
 
@@ -114,66 +126,57 @@ function getImg(_file) {
   currentInput.value = "";
 }
 
-// Eventos para o carregamento das imagens
-inputFile.addEventListener("change", function (e) {
-  currentInput = inputFile; // Define o input atual como inputFile
-  container = sect
-  getImg(e);
-});
-
-inputIcon.addEventListener("change", function (e) {
-  currentInput = inputIcon; // Define o input atual como inputIcon
-  container = sect_icon
-  getImg(e);
-});
-
-// Ação ao clicar no botão "Recortar"
+//BOTÂO de Recortar
+const cropButton = document.getElementById("crop-button");
 cropButton.addEventListener("click", function () {
   if (cropper) {
-    const croppedImage = cropper.getCroppedCanvas().toDataURL("image/png"); // Obtém a imagem recortada
-    
-   container.style.backgroundImage = `url('${croppedImage}')`;
+    // Obtém a imagem recortada E adicona no background 
+    const croppedImage = cropper.getCroppedCanvas().toDataURL("image/png"); 
+    container.style.backgroundImage = `url('${croppedImage}')`;
 
-    cropper.destroy(); // Remove o cropper
-    cropper = null; // Reseta a instância do cropper
-    sec_cut.style.display = "none";
-    cropperContainer.style.display = "none"; // Esconde o container
-
+    //tira cropper
+    cropper.destroy(); 
+    cropper = null; 
+    section_cropper.style.display = "none";
+    cropperContainer.style.display = "none";
     container = null;
     
     // Rolagem para a section-cut
-    sect.scrollIntoView({
-      behavior: 'smooth', // Rolagem suave
-      block: 'center' // Alinha o item no centro da tela
-    });
+    section_1.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
 
-// Ação ao clicar no botão "Cancelar"
+//botão de Cancelar
+const cancelButton = document.getElementById("cancel-button");
 cancelButton.addEventListener("click", function () {
   if (cropper) {
     cropper.destroy(); // Remove o cropper
     cropper = null; // Reseta a instância do cropper
-    sec_cut.style.display = "none";
+    section_cropper.style.display = "none";
     cropperContainer.style.display = "none"; // Esconde o container
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*icone*/
-
 //#endregion
+
+//#region Butão de Edicar
+const section_3 = document.querySelector(".section-3");
+function editprofile() {
+  if(section_3.style.display == "none"){
+    section_3.style.display = "block";
+    section_3.scrollIntoView({ behavior : 'smooth', block:'start'})
+  }else{
+    section_3.style.display = "none";
+    section_1.scrollIntoView({ behavior : 'smooth', block:'start'})
+  }
+}
+//#endregion
+
+/*
+  Ricardo esses são os items que ja estão referenciados:
+  * section_1 === banner
+  * section_icon === icone
+  * background  === fundo da pagina
+  * id_estado === estado de input 
+  * id_cidade === cidade de input
+*/

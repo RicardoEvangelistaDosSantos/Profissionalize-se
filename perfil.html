@@ -24,7 +24,7 @@
                 <div class="sec2-top">
                     <div class="profile-title">
                         <h2 id="nickname_text" class="nickname-text">nickname</h2>
-                        <button onclick="editprofile"><img src="./img/icons/paintBrush_icon.svg"> </button>
+                        <button onclick="editprofile()"><img src="./img/icons/paintBrush_icon.svg"> </button>
                     </div>
                     <div class="profile-text">
                         <h4 id="profire_text">descrição da pessoa</h4>
@@ -92,9 +92,9 @@
                 </div>
 
             </section>
-            <section class="section-3" style="display: none;">
+             <section class="section-3" style="display: none;"" >
                 <h1>Formulário de Cadastro</h1>
-                    <form> 
+                    <form id="form-perfil"> 
                         
                         <div class="container">
                         
@@ -172,7 +172,7 @@
 
                             <div class="item-9">
                                 <div class="group">
-                                    <input type="color" onchange="backgroundColor(this.value)">
+                                    <input type="color" id="inputColor">
                                 </div>
                             </div>
                                 <div class="item-10">
