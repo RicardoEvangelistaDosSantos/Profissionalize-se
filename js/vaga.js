@@ -93,6 +93,8 @@ function loadVagas() {
 
 loadVagas();
 
+
+
 /*CARROSSEL*/
 let arrow = 1
 function arrowLeft() {
@@ -106,9 +108,29 @@ function arrowLeft() {
 }
 
 function arrowRight() {
-    if(arrow < 3 ){
+     const inputLenght = document.querySelectorall(".section-tinder input[radio]")
+    console.log("a:", inputLenght)
+    if(arrow < 10){
         arrow = arrow + 1
        
+        // // Selecione a folha de estilo existente
+        // const styleSheet = document.styleSheets[0]; 
+
+        // // Adicione ou modifique uma regra CSS
+        // styleSheet.insertRule(`
+        //     input:nth-of-type(${arrow}):checked ~ main#carousel {
+        //         --position: ${arrow };
+        //     }
+        // `, styleSheet.cssRules.length);
+
+
+        // styleSheet.insertRule(`
+        // div.item:nth-of-type(${arrow}) {
+        //     --offset: ${arrow};
+        //     background-color: #bdbdbd;
+        // }
+        // `, styleSheet.cssRules.length);
+
     }else{
         arrow = 1
     }

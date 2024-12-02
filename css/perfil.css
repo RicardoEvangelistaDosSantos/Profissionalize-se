@@ -20,6 +20,9 @@
     --text_one:#ffffff;
     --text_two:#bdbdbd;
 }
+body{
+  background-color: var(--background_color);
+}
 .section-2{
     margin-bottom: 50px;
     box-shadow: 2px 2px 20px black;
