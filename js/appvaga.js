@@ -48,7 +48,7 @@ app.get('/api/vagasrecomendadas', (req, res) => {
     });
 });
 
-const PORT = 3002;
+const PORT = 3003;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

@@ -5,7 +5,7 @@ const id_cidade = document.getElementById("id_cidade");
 let cacheEstados = [];
 let cacheCidades = {};
 
-// cria os estados na seclect
+// cria os estados na select
 fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome`)
     .then(result => result.json())
     .then(data => {
@@ -180,3 +180,5 @@ function editprofile() {
   * id_estado === estado de input 
   * id_cidade === cidade de input
 */
+
+// 
