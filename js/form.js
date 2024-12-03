@@ -5,7 +5,8 @@ document.getElementById('form-perfil').addEventListener('submit', function (even
     const nome = document.getElementById('nome').value;
     const sobrenome = document.getElementById('sobrenome').value;
     const formacao = document.getElementById('escolaridade').value;
-    const descricao = document.getElementById('experiencia').value;
+    const resumo = document.getElementById('resumo').value;
+    const experiencia = document.getElementById('experiencia').value;
     const telefone = document.getElementById('telefone').value;
     const dt_nasc = document.getElementById('data-nascimento').value;
     const estado = document.getElementById('id_estado').value;
@@ -31,7 +32,8 @@ document.getElementById('form-perfil').addEventListener('submit', function (even
         nome,
         sobrenome,
         formacao,
-        descricao,
+        resumo,
+        experiencia,
         telefone,
         dt_nasc,
         estado,

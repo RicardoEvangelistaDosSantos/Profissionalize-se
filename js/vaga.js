@@ -28,7 +28,7 @@ function calcularTempoPostagem(dataPostagem) {
 
 // Função para carregar as vagas
 function loadVagasRecomendadas() {
-    fetch('http://localhost:3003/api/vagasrecomendadas')
+    fetch('http://localhost:3000/api/vagasrecomendadas')
         .then(response => response.json())
         .then(data => {
             const list = document.getElementById('section-vaga-recomendada');
@@ -61,7 +61,7 @@ function loadVagasRecomendadas() {
 loadVagasRecomendadas();
 
 function loadVagas() {
-    fetch('http://localhost:3003/api/vagas')
+    fetch('http://localhost:3000/api/vagas')
         .then(response => response.json())
         .then(data => {
             const list = document.getElementById('section-vaga');
