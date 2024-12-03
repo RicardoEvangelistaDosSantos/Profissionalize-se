@@ -69,22 +69,28 @@ function loadVagas() {
             data.forEach(vaga => {
                 const tempoPostagem = calcularTempoPostagem(vaga.dt_postagem);
                 list.innerHTML +=
-                    `<div class="vaga">
-                        <div class="header-vaga">
+                
+                    `<div class="container-vaga">
+                        <div class="vaga">
+                            <div class="header-vaga">
                                 <div>
                                 <h4>${vaga.empresa}</h4>
-                                <h2>${vaga.titulo}</h2>
-                                <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
-                            </div>
+                                    <h2>${vaga.titulo}</h2>
+                                    
+                                    <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
+                                </div>
                                 <p>${tempoPostagem}</span>
+                            </div>
+                            <div class="body-vaga">
+                                <p>${vaga.descricao}</p>
+                                
+                            </div>
+                            <div class="footer-vaga">
+                                <a href="${vaga.url_vaga}" target="_blank">aaaa</a>
+                                <p>${vaga.status_vaga}</p>
+                            </div>
                         </div>
-                        <div class="body-vaga">
-                            <p>${vaga.descricao}</p>
-                            <p><a href="${vaga.url_vaga}" target="_blank">Ver mais detalhes</a></p>
-                        </div>
-                        <div class="footer-vaga">
-                            <p>${vaga.status_vaga}</p>
-                        </div>
+                        <span>Ver mais detalhes</span>
                     </div>`;
             });
         })
@@ -109,6 +115,7 @@ function arrowLeft() {
 }
 
 function arrowRight() {
+    
 
     const inputRadio = document.querySelectorAll(".section-tinder input[type='radio']");
     console.log("lengt:",inputRadio.length - 1)
