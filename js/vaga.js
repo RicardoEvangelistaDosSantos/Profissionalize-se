@@ -95,49 +95,74 @@ loadVagas();
 
 
 
-/*CARROSSEL*/
-let arrow = 1
+let arrow = 1;
+let add = 2
 function arrowLeft() {
-    if(arrow > 0 ){
-        arrow = arrow - 1
-       
+    // Verifica se o arrow está maior que 0 para decrementar
+    if (arrow > 1) {
+        arrow = arrow - 1;
     }
 
-    document.getElementById(`Cradio_${arrow}`).checked = true
-    console.log("left:",arrow)
+    // Marca o radio button correspondente
+    document.getElementById(`Cradio_${arrow}`).checked = true;
+    console.log("left:", arrow);
 }
 
 function arrowRight() {
-     const inputLenght = document.querySelectorall(".section-tinder input[radio]")
-    console.log("a:", inputLenght)
-    if(arrow < 10){
-        arrow = arrow + 1
-       
-        // // Selecione a folha de estilo existente
-        // const styleSheet = document.styleSheets[0]; 
 
-        // // Adicione ou modifique uma regra CSS
-        // styleSheet.insertRule(`
-        //     input:nth-of-type(${arrow}):checked ~ main#carousel {
-        //         --position: ${arrow };
-        //     }
-        // `, styleSheet.cssRules.length);
+    const inputRadio = document.querySelectorAll(".section-tinder input[type='radio']");
+    console.log("lengt:",inputRadio.length - 1)
+
+    if (arrow < inputRadio.length  ) {
+        arrow = arrow + 1;
+    } 
 
 
-        // styleSheet.insertRule(`
-        // div.item:nth-of-type(${arrow}) {
-        //     --offset: ${arrow};
-        //     background-color: #bdbdbd;
-        // }
-        // `, styleSheet.cssRules.length);
+    if (arrow == inputRadio.length - 1) {
+        const sect_tinder = document.querySelector(".section-tinder");
+        
+        //Cria novo radio button
+        const newRadio = document.createElement("input");
+        newRadio.type = "radio";
+        newRadio.name = "position";
+        newRadio.id = `Cradio_${arrow+add}`;
+        sect_tinder.appendChild(newRadio);
 
-    }else{
-        arrow = 1
+        const carouselButton = document.querySelector('.carousel-button');
+        sect_tinder.insertBefore(newRadio,carouselButton )
+
+
+        // Cria novo item para o carrossel
+        const sect_carrosel = document.getElementById("carousel");
+        const newItem = document.createElement("div");
+        newItem.classList.add("item");
+        sect_carrosel.appendChild(newItem);
+
+        // Selecione a folha de estilo existente
+        const styleSheet = document.styleSheets[0];
+
+        // Adiciona regra CSS para a posição do carrossel
+        styleSheet.insertRule(`
+            input:nth-of-type(${arrow+add}):checked ~ main#carousel {
+                --position: ${arrow+add};
+            }
+        `, styleSheet.cssRules.length);
+
+        // Regra CSS para o novo item
+        styleSheet.insertRule(`
+            div.item:nth-of-type(${arrow+add}) {
+                --offset: ${arrow+add};
+                background-color: #A40148;
+            }
+        `, styleSheet.cssRules.length);
+
+        console.log("Novo item adicionado:", arrow);
     }
-    document.getElementById(`Cradio_${arrow}`).checked = true
-    console.log("right:",arrow)
-    
+
+    document.getElementById(`Cradio_${arrow}`).checked = true;
+    console.log("right:", arrow);
 }
+
 
 
 
