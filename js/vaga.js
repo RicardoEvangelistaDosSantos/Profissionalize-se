@@ -152,7 +152,7 @@ function arrowRight() {
         styleSheet.insertRule(`
             div.item:nth-of-type(${arrow+add}) {
                 --offset: ${arrow+add};
-                background-color: #A40148;
+                background-color: var(--text_two);
             }
         `, styleSheet.cssRules.length);
 
