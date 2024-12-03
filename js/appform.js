@@ -35,19 +35,19 @@ db.connect((err) => {
 // Rota POST para enviar dados do formulário para o banco de dados
 app.post('/submit-form', (req, res) => {
     const {
-        nome, sobrenome, formacao, descricao, telefone,
+        nome, sobrenome, formacao, resumo, telefone,
         dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa, id_usuario
     } = req.body;
 
     // Query para inserir os dados no banco de dados
     const query = `
         INSERT INTO perfil (
-            id_usuario, nome, sobrenome, formacao, descricao, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
+            id_usuario, nome, sobrenome, formacao, resumo, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const values = [
-        id_usuario, nome, sobrenome, formacao, descricao, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
+        id_usuario, nome, sobrenome, formacao, resumo, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
     ];
 
     // Executando a query
