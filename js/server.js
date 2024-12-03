@@ -3,12 +3,18 @@ const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
+const multer = require('multer');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
 
 // Habilitar CORS para todas as origens
 app.use(cors());
+
+// Configuração do multer para armazenamento de arquivos
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Configuração do banco de dados
 const db = mysql.createConnection({
