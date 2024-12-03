@@ -50,6 +50,7 @@ document.getElementById("registrar").addEventListener("click", async (event) => 
       alert(result.mensagem);
     } else {
       alert(`Erro: ${result.mensagem}`);
+      window.location.href = "../login.html"
     }
   } catch (err) {
     alert("Erro ao se conectar ao servidor.");

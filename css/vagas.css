@@ -80,7 +80,7 @@ text-align: center;
 main#carousel {
   grid-row: 1 / 2;
   grid-column: 1 / 8;
-  width: 900px;
+  width: 1000px;
   height: 500px;
   display: flex;
   align-items: center;
@@ -101,11 +101,6 @@ div.item {
   height: 400px;
   box-shadow: 0px 0px 20px var(--background_color);
   border-radius: 10px;
-
-
-
-
-
 
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
@@ -205,24 +200,44 @@ input:nth-of-type(5):checked ~ main#carousel {
   padding: 40px;
 }
 
+.container-vaga{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .vaga {
-  margin: 20px auto 20px auto;
+  margin: 20px auto 0px auto;
   max-width: 980px;
-  background-color: white;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 20px;
 }
+.vaga:hover + span{
+  display: block;
+}
 
+.container-vaga span{
+  display: none;
+  margin: 2px 0px 0px 0px ;
+  background-color: #ffffff;
+  width: 150px;
+  border-radius: 0 0px 10px 10px;
+  text-align: center;
+}
 .header-vaga {
   display: flex;
   justify-content: space-between;
 }
 
 .body-vaga {
-  background-color: rgb(218, 218, 218);
+  background-color: #F5F5F5;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: inset -5px -5px 5px 0px rgba(90, 90, 90, 0.25);
+
 }
+
 
 .footer-vaga {
   margin: 10px 5px 0px;
