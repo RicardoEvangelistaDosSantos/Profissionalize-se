@@ -49,15 +49,13 @@
       </div> 
       
       <main id="carousel">
-        <div class="item">
-          <div></div>
-        </div>
         <div class="item"></div>
         <div class="item"></div>
-
+        <div class="item"></div>
       <main>
     
     </section>
+
     <section class="section-search ">
       <form class="search-form container d-flex justify-content-center " role="search">
 
@@ -88,6 +86,28 @@
     </section>
     <section id="section-vaga">
     </section>
+    <div class="container-vaga">
+      <div class="vaga">
+          <div class="header-vaga">
+              <div>
+                <h4>${vaga.empresa}</h4>
+                
+                  <h2>${vaga.titulo}</h2>
+                  
+                  <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
+              </div>
+              <p>${vaga.status_vaga}/${tempoPostagem}</p>
+              
+          </div>
+          <div class="body-vaga">
+              <p>${vaga.descricao}</p>
+          </div>
+          <div class="footer-vaga">
+              <a href="${vaga.url_vaga}" target="_blank">Entrar na vaga</a> 
+          </div>
+      </div>
+      <span>Ver mais detalhes</span>
+  </div>
   </main>
   <script src="js/server.js"></script>
   <script src="js/vaga.js"></script>
