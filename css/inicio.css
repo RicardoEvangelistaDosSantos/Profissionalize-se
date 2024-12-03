@@ -30,6 +30,19 @@ body{
     background-color: var(--main_one);
 }
 
+
+.a{
+    color: var(--text_one);
+}
+.a:active {
+    color: var(--background_color_two);
+}
+.a:hover {
+    text-decoration: underline;
+}
+
+
+
 .returnTop{
     position:  fixed;
     z-index: 2;
@@ -428,6 +441,12 @@ footer{
     align-items: center;
     width: 80%;
     gap: 20px;
+}
+.footer-center a:hover {
+    transform: scale(1.1);
+}
+.footer-center a:active {
+    transform: scale(0.9);
 }
 
 .footerC-instagram,.footerC-linkedin,.footerC-github{

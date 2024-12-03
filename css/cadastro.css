@@ -269,7 +269,6 @@ main {
 }
 
 .terms .input-terms a:active {
-    /* margin-top: 15px; */
     color: var(--main_one);
 }
 
@@ -288,7 +287,7 @@ main {
     text-decoration: underline;
 }
 .table-down a:active{
-    color: var(--text_one);
+    color: var();
 }
 
 /* Responsividade */
