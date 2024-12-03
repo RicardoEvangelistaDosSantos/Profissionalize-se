@@ -14,8 +14,9 @@ app.use(cors());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "", // Substitua pelo seu password
+  password: "senac", // Substitua pelo seu password
   database: "profissionalize_se",  // Certifique-se de que este banco existe
+  port: 3307,
 });
 
 db.connect((err) => {

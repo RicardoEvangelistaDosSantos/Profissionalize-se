@@ -23,6 +23,8 @@ document.getElementById("login").addEventListener("click", async () => {
       // Redirecionar para outra página ou realizar outra ação
     } else {
       alert(`Erro: ${result.mensagem}`);
+      
+
     }
   } catch (err) {
     alert("Erro ao se conectar ao servidor.");
