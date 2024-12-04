@@ -4,7 +4,7 @@ document.getElementById('form-perfil').addEventListener('submit', function (even
     // Capturando os dados do formulário
     const nome = document.getElementById('nome').value;
     const sobrenome = document.getElementById('sobrenome').value;
-    const formacao = document.getElementById('escolaridade').value;
+    const formacao = document.getElementById('formacao').value;
     const resumo = document.getElementById('resumo').value;
     const experiencia = document.getElementById('experiencia').value;
     const telefone = document.getElementById('telefone').value;
@@ -16,52 +16,36 @@ document.getElementById('form-perfil').addEventListener('submit', function (even
     const foto_capa = document.getElementById('file_banner').files[0];  // Arquivo de foto de capa
 
     // Verificando se os arquivos foram selecionados (opcional)
-    let foto_perfil_url = '';
-    let foto_capa_url = '';
-    
-    if (foto_perfil) {
-        foto_perfil_url = URL.createObjectURL(foto_perfil);
-    }
+    let formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("sobrenome", sobrenome);
+    formData.append("formacao", formacao);
+    formData.append("resumo", resumo);
+    formData.append("experiencia", experiencia);
+    formData.append("telefone", telefone);
+    formData.append("dt_nasc", dt_nasc);
+    formData.append("estado", estado);
+    formData.append("cidade", cidade);
+    formData.append("cor_fundo", cor_fundo);
+    formData.append("foto_perfil", foto_perfil);
+    formData.append("foto_capa", foto_capa);
+    formData.append("id_usuario", 1);  // Exemplo de id do usuário
 
-    if (foto_capa) {
-        foto_capa_url = URL.createObjectURL(foto_capa);
-    }
-
-    // Dados que vamos enviar para o servidor
-    const data = {
-        nome,
-        sobrenome,
-        formacao,
-        resumo,
-        experiencia,
-        telefone,
-        dt_nasc,
-        estado,
-        cidade,
-        cor_fundo,
-        foto_perfil: foto_perfil_url,  // Pode enviar a URL do arquivo ou o nome do arquivo se o backend aceitar
-        foto_capa: foto_capa_url,      // O mesmo vale para foto_capa
-        id_usuario: 1  // Aqui você deve pegar o id do usuário logado, por exemplo, do contexto do servidor
-    };
-
-    // Enviando os dados para o servidor com fetch API
+    // Enviar os dados para o servidor com fetch API
     fetch('http://localhost:3000/submit-form', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message) {
-                alert('Perfil criado com sucesso!');
-            } else {
-                alert('Erro ao criar perfil');
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao enviar os dados');
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            alert('Perfil criado com sucesso!');
+        } else {
+            alert('Erro ao criar perfil');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao enviar os dados');
+    });
 });

@@ -1,37 +1,61 @@
+const bcrypt = require("bcrypt")
 const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
-const cors = require("cors");
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+const cors = require('cors');  // Importando o módulo CORS
 
+// Criando a aplicação Express
 const app = express();
+
+// Habilitando o CORS para todas as origens (configuração básica)
+app.use(cors());  // Isso permite que qualquer domínio acesse seu servidor
+
+// Configuração para aceitar JSON
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Habilitar CORS para todas as origens
-app.use(cors());
-
-// Configuração do multer para armazenamento de arquivos
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+// Configuração para arquivos estáticos (como fotos)
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Configuração do banco de dados
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "senac", // Substitua pelo seu password
-  database: "profissionalize_se",  // Certifique-se de que este banco existe
-  port: 3307,
+    host: "localhost",
+    user: "root",
+    password: "", // Substitua pelo seu password
+    database: "profissionalize_se",  // Certifique-se de que este banco existe
 });
 
 db.connect((err) => {
-  if (err) {
-    console.error("Erro ao conectar ao banco de dados:", err);
-    process.exit(1);
-  }
-  console.log("Conectado ao banco de dados");
+    if (err) {
+        console.error("Erro ao conectar ao banco de dados:", err);
+        process.exit(1);
+    }
+    console.log("Conectado ao banco de dados");
 });
+
+// Configuração do multer para upload de arquivos
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadPath = path.join(__dirname, 'uploads');
+        
+        // Verificar se a pasta uploads existe, caso contrário, criar
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath);
+        }
+
+        cb(null, uploadPath);  // Salvar na pasta 'uploads'
+    },
+    filename: (req, file, cb) => {
+        const fileExtension = path.extname(file.originalname);
+        const filename = Date.now() + '-' + Math.round(Math.random() * 1E9) + fileExtension;
+        cb(null, filename);  // Nome do arquivo gerado
+    }
+});
+
+const upload = multer({ storage: storage });
 
 // Rota para registrar usuário
 app.post("/registrar", async (req, res) => {
@@ -103,36 +127,44 @@ app.post("/login", (req, res) => {
 });
 
 // Rota POST para enviar dados do formulário para o banco de dados
-app.post('/submit-form', (req, res) => {
-  const {
-      nome, sobrenome, formacao, resumo, experiencia, telefone,
-      dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa, id_usuario
-  } = req.body;
+app.post('/submit-form', upload.fields([{ name: 'foto_perfil' }, { name: 'foto_capa' }]), (req, res) => {
+  try {
+      const { nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo, id_usuario } = req.body;
+      const foto_perfil = req.files.foto_perfil ? req.files.foto_perfil[0].filename : null;
+      const foto_capa = req.files.foto_capa ? req.files.foto_capa[0].filename : null;
 
-  // Query para inserir os dados no banco de dados
-  const query = `
-      INSERT INTO perfil (
-          id_usuario, nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `;
-
-  const values = [
-      id_usuario, nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
-  ];
-
-  // Executando a query
-  db.query(query, values, (err, result) => {
-      if (err) {
-          console.error('Erro ao inserir dados:', err);
-          return res.status(500).json({ error: 'Erro ao inserir dados' });
+      // Verificar se as fotos foram enviadas
+      if (!foto_perfil || !foto_capa) {
+          return res.status(400).json({ message: 'É necessário enviar as fotos de perfil e capa.' });
       }
-      res.status(200).json({ message: 'Perfil criado com sucesso!' });
-  });
+
+      // Query para inserir os dados no banco de dados
+      const query = `
+          INSERT INTO perfil (
+              id_usuario, nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
+      
+      const values = [
+          id_usuario, nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
+      ];
+
+      db.query(query, values, (err, result) => {
+          if (err) {
+              console.error('Erro ao salvar perfil:', err); // Imprimir erro detalhado no console
+              return res.status(500).json({ message: 'Erro ao salvar perfil no banco de dados', error: err });
+          }
+          res.status(200).json({ message: 'Perfil salvo com sucesso' });
+      });
+  } catch (err) {
+      console.error('Erro geral no servidor:', err);
+      res.status(500).json({ message: 'Erro no servidor', error: err });
+  }
 });
 
 // Rota GET para listar todas as vagas
 app.get('/api/vagas', (req, res) => {
-  db.query('SELECT * FROM vaga', (err, results) => {
+  db.query('SELECT V.*, nome_empresa FROM vaga v JOIN empresa e ON v.id_empresa = e.id_empresa', (err, results) => {
       if (err) {
           console.error('Erro ao buscar vagas: ', err);
           return;
@@ -144,7 +176,7 @@ app.get('/api/vagas', (req, res) => {
 // Rota GET para listar todas as vagas recomendadas
 app.get('/api/vagasrecomendadas', (req, res) => {
   const { id } = req.params;
-  db.query('SELECT v.* FROM vaga v JOIN teste_voc tv ON v.id_setor = tv.id_setor JOIN perfil p ON tv.id_perfil = p.id_perfil WHERE p.id_perfil = ?', (err, results) => {
+  db.query('SELECT v.*, nome_empresa FROM vaga v JOIN teste_voc tv ON v.id_setor = tv.id_setor JOIN perfil p ON tv.id_perfil = p.id_perfil JOIN empresa e ON v.id_empresa = e.id_empresa WHERE p.id_perfil = ?', (err, results) => {
       if (err) {
           console.error('Erro ao buscar vagas: ', err);
           return;
