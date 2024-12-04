@@ -6,6 +6,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');  // Importando o módulo CORS
+const jwt = require("jsonwebtoken"); // Importar o jsonwebtoken
 
 // Criando a aplicação Express
 const app = express();
@@ -119,11 +120,32 @@ app.post("/login", (req, res) => {
     const senhaValida = await bcrypt.compare(senha, usuarioEncontrado.senha);
 
     if (senhaValida) {
+      const token = jwt.sign({ id: usuarioEncontrado.id, usuario: usuarioEncontrado.usuario }, 'seu-segredo-aqui', { expiresIn: '1h' });
       res.json({ mensagem: "Login realizado com sucesso!" });
     } else {
       res.status(401).json({ mensagem: "Senha inválida" });
     }
   });
+});
+
+const verificarToken = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (!token) {
+    return res.status(403).json({ mensagem: "Token não fornecido!" });
+  }
+
+  jwt.verify(token, 'seu-segredo-aqui', (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ mensagem: "Token inválido!" });
+    }
+    req.usuarioId = decoded.id;
+    next();
+  });
+};
+
+// Rota protegida
+app.get("/protegida", verificarToken, (req, res) => {
+  res.json({ mensagem: "Esta é uma rota protegida!", usuarioId: req.usuarioId });
 });
 
 // Rota POST para enviar dados do formulário para o banco de dados
