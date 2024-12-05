@@ -9,25 +9,21 @@ document.getElementById("login").addEventListener("click", async () => {
 
   try {
     const response = await fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, senha }),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON .stringify({ email, senha }),
     });
-
     const result = await response.json();
-
     if (response.ok) {
-      alert(result.mensagem);
-      localStorage.setItem('token', result.token); // Armazenar o token no localStorage
-      window.location.href = "perfil.html"; // Redirecionar para a página protegida
+        localStorage.setItem('id_usuario', result.id_usuario);
+        alert(result.mensagem);
+        window.location.href = "../Profissionalize-se/perfil.html?id_usuario=" + result.usuario.id_usuario;
     } else {
-      alert(`Erro: ${result.mensagem}`);
-      
-
+        alert(`Erro: ${result.mensagem}`);
     }
-  } catch (err) {
+} catch (err) {
     alert("Erro ao se conectar ao servidor.");
-  }
+}
 });

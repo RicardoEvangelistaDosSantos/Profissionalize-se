@@ -36,21 +36,21 @@ document.getElementById("registrar").addEventListener("click", async (event) => 
     alert("Você deve aceitar os Termos de Privacidade e os Termos de Uso.");
     return;
   }
-
   try {
     const response = await fetch("http://localhost:3000/registrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ nome_completo, email, cpf, senha }),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nome_completo, email, cpf, senha }),
     });
     const result = await response.json();
     if (response.ok) {
-      alert(result.mensagem);
+        localStorage.setItem('id_usuario', result.id_usuario);
+        alert(result.mensagem);
+        window.location.href = "../Profissionalize-se/perfil.html?id_usuario=" + result.id_usuario;
     } else {
-      alert(`Erro: ${result.mensagem}`);
-      window.location.href = "../login.html"
+        alert(`Erro: ${result.mensagem}`);
     }
   } catch (err) {
     alert("Erro ao se conectar ao servidor.");
