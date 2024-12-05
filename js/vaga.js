@@ -146,7 +146,7 @@ function arrowRight() {
         `, styleSheet.cssRules.length);
 
         //gera a vaga dentro do item
-        fetch('http://localhost:3000/api/vagasrecomendadas')
+        fetch('http://localhost:3000/api/vagas')
         .then(response => response.json())
         .then(data => {
             

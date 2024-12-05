@@ -225,7 +225,6 @@ app.get('/api/vagas', (req, res) => {
 // Rota GET para listar vagas recomendadas
 app.get("/api/vagasrecomendadas", (req, res) => {
     const id_usuario = req.query.id_usuario; // Obtém o id_usuario da query string
-
     if (!id_usuario) {
         return res.status(400).json({ mensagem: "ID do usuário é obrigatório." });
     }
