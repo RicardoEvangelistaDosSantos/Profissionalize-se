@@ -70,7 +70,7 @@ body{
     justify-content: space-evenly;
     align-items: center;
     background-color: var(--background_color);
-    background-image:url("./img-background/student.svg") ; /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
+    background-image:url("./img-background/estudante.jpg") ; /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
     background-size: cover;
     
 }
@@ -229,7 +229,7 @@ body{
     animation-range: entry 0% cover 10%;
 }
 .card-2{
-    background-image: url(); /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
+    background-image: url(); /*colocar imagem aqui >>>>>>>>>>>>>>>>>> ./img-background/student_pedro.svg*/
     background-size: cover;
     transform: 10px;
     transform: translateY(10px);
