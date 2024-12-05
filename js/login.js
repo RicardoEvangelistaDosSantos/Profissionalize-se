@@ -19,7 +19,7 @@ document.getElementById("login").addEventListener("click", async () => {
     if (response.ok) {
         localStorage.setItem('id_usuario', result.id_usuario);
         alert(result.mensagem);
-        window.location.href = "../Profissionalize-se/perfil.html?id_usuario=" + result.usuario.id_usuario;
+        window.location.href = "../profissionalize-se/perfil.html?id_usuario=" + result.usuario.id_usuario;
     } else {
         alert(`Erro: ${result.mensagem}`);
     }

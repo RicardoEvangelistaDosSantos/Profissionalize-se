@@ -114,6 +114,7 @@ function getImg(_file) {
         viewMode: 2,
         autoCropArea: 0.8,
       });
+      document.body.style.overflow = "hidden";
 
       // Rolagem para a section-cut
       section_cropper.scrollIntoView({ behavior: 'instant', block: 'center'  });
@@ -124,6 +125,8 @@ function getImg(_file) {
   // Reseta o valor do input para permitir seleção do mesmo arquivo
   currentInput.value = "";
 }
+
+const section_3 = document.querySelector(".section-3");
 
 //BOTÂO de Recortar
 const cropButton = document.getElementById("crop-button");
@@ -142,6 +145,7 @@ cropButton.addEventListener("click", function () {
     
     // Rolagem para a section-cut
     section_1.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.body.style.overflow = "auto";
   }
 });
 
@@ -153,13 +157,16 @@ cancelButton.addEventListener("click", function () {
     cropper = null; // Reseta a instância do cropper
     section_cropper.style.display = "none";
     cropperContainer.style.display = "none"; // Esconde o container
+
+    section_3.scrollIntoView({ behavior: 'instant', block: 'center' });
+    document.body.style.overflow = "auto";
   }
 });
 
 //#endregion
 
 //#region Butão de Edicar
-const section_3 = document.querySelector(".section-3");
+
 function editprofile() {
   if(section_3.style.display == "none"){
     section_3.style.display = "block";
@@ -206,3 +213,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 const urlParams = new URLSearchParams(window.location.search);
 const id_usuario = urlParams.get('id_usuario');
 console.log('ID do Usuário:', id_usuario);
+
+
+
+/*troca de pagina de questionario*/
+function setLink(linkNumber) {
+  // Armazena o link clicado no sessionStorage
+  sessionStorage.setItem('clickedLink', linkNumber);
+}

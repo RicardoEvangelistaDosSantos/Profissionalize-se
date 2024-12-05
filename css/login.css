@@ -29,6 +29,30 @@ body {
     color: #ffffff;
 }
 
+/*scrollbar*/
+::-webkit-scrollbar{
+
+    height: 10px;
+    width: 5px;
+    
+    /*animation: background-bar 4s alternate infinite;*/
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--text_two);
+    
+}
+::-webkit-scrollbar-track{
+    background-color: var(--background_color);
+    height: 10px;
+    margin: 2px;
+}
+::-webkit-scrollbar-button{
+    background-color: var(--background_color);
+    height: 2px;
+}
+
+
+
 /* Estilização principal */
 main {
     display: flex;

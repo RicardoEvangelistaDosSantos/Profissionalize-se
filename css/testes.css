@@ -1,3 +1,4 @@
+
 /* Reset básico */
 * {
     margin: 0;
@@ -19,29 +20,17 @@
     --text_one: #ffffff;
     --text_two: #bdbdbd;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--background_color);
+body{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
+    background-color: var(--background_color);
 }
-
-div {
-    color: var(--main_one);
-
-}
-
-.container {
-    background: var(--background_color);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 600px;
+.quest-container{
     text-align: center;
+    color: var(--text_two);
 }
 
 h1 {
@@ -53,45 +42,64 @@ h2 {
     font-size: 20px;
     margin-bottom: 80px;
 }
-
-button {
-    padding: 10px 20px;
-    background: var(--main_one);
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background: var(--main_two);
-}
-
-#quiz-container {
-    margin-bottom: 20px;
-}
-
-.question {
+h3 {
     font-size: 20px;
     margin-bottom: 50px;
+    color: var(--text_one);
 }
-
-.option {
-    background-color: #ffffff;
-    color: #A40148;
+.buttom-container{
+    margin-top: 5%;
+}
+.hexagon-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 150px;
+    height: 150px; /* Altura fixa para evitar cortes */
+    background: var(--text_one);
+    color: var(--main_one);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px; /* Para espaçamento interno */
+    box-sizing: border-box;
     cursor: pointer;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    overflow: hidden; /* Garante que o conteúdo respeite o formato */
+    transition: background-color 0.1s, transform 0.1s;
 }
 
-.option.selected {
-    background-color: #A40148;
-    color: #ffffff;
+.hexagon-button:hover  {
+    background: var(--main_one);
+    transform: scale(1.1);
+    color: var(--text_one);
+}
+.hexagon-button:focus{
+    background: var(--main_one);
+    transform: scale(0.9);
+    color: var(--text_one);
+}
+.hexagon-button:active {
+    transform: scale(1.05);
 }
 
-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
+.hexagon-button span {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 1.3; /* Ajusta a altura da linha */
+    max-height: 100%;
+    max-width: 100%; /* Limita o conteúdo interno ao hexágono */
+    overflow: hidden;
+    text-align: center;
+}
+
+.buttom-top ,.buttom-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 }
