@@ -213,7 +213,7 @@ app.post('/submit-form', upload.fields([
 
 // Rota GET para listar todas as vagas
 app.get('/api/vagas', (req, res) => {
-  db.query('SELECT * FROM vaga', (err, results) => {
+  db.query('SELECT V.*, nome_empresa FROM vaga v JOIN empresa e ON v.id_empresa = e.id_empresa', (err, results) => {
       if (err) {
           console.error('Erro ao buscar vagas: ', err);
           return;
@@ -222,16 +222,26 @@ app.get('/api/vagas', (req, res) => {
   });
 });
 
-// Rota GET para listar todas as vagas recomendadas
-app.get('/api/vagasrecomendadas', (req, res) => {
-  const { id } = req.params;
-  db.query('SELECT v.* FROM vaga v JOIN teste_voc tv ON v.id_setor = tv.id_setor JOIN perfil p ON tv.id_perfil = p.id_perfil WHERE p.id_perfil = ?', (err, results) => {
-      if (err) {
-          console.error('Erro ao buscar vagas: ', err);
-          return;
-      }
-      res.send(results);
-  });
+// Rota GET para listar vagas recomendadas
+app.get("/api/vagasrecomendadas", (req, res) => {
+    const id_usuario = req.query.id_usuario; // Obtém o id_usuario da query string
+    if (!id_usuario) {
+        return res.status(400).json({ mensagem: "ID do usuário é obrigatório." });
+    }
+
+    // Aqui você deve implementar a lógica para buscar as vagas recomendadas para o id_usuario
+    const sql = `SELECT v.*, nome_empresa FROM vaga v
+                JOIN teste_voc tv ON v.id_setor = tv.id_setor 
+                JOIN usuario u ON tv.id_usuario = u.id_usuario
+                JOIN empresa e ON v.id_empresa = e.id_empresa
+                WHERE u.id_usuario = ?`; 
+    db.query(sql, [id_usuario], (err, results) => {
+        if (err) {
+            return res.status(500).json({ mensagem: "Erro ao buscar vagas recomendadas.", erro: err });
+        }
+
+        res.json(results); // Retorna as vagas recomendadas
+    });
 });
 
 // Inicialização do servidor

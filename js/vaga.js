@@ -48,6 +48,33 @@ function loadVagas() {
 
 loadVagas();
 
+async function listarVagasRecomendadas() {
+    const id_usuario = localStorage.getItem('id_usuario'); // Obtém o id_usuario do localStorage
+
+    if (!id_usuario) {
+        alert("Você precisa estar logado para ver as vagas recomendadas.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/vagasrecomendadas?id_usuario=${id_usuario}`);
+        const vagas = await response.json();
+
+        if (response.ok) {
+            // Aqui você deve implementar a lógica para exibir as vagas na interface
+            console.log(vagas); // Exemplo de log das vagas
+            // Adicione o código para renderizar as vagas na página
+        } else {
+            alert(`Erro: ${vagas.mensagem}`);
+        }
+    } catch (err) {
+        alert("Erro ao se conectar ao servidor.");
+    }
+}
+
+// Chame a função para listar as vagas recomendadas quando a página carregar
+document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
+
 
 
 const Rvaga_1 = document.getElementById("section_vaga_recomendada_1");
@@ -201,7 +228,9 @@ function textInner(data,tipoVaga) {
 
     `
     }
-
-      
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+const id_usuario = urlParams.get('id_usuario');
+console.log('ID do Usuário:', id_usuario);
 
