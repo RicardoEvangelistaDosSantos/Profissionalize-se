@@ -12,7 +12,6 @@ html {
     
 }
 
-
 /*cores*/
 :root{
     --background_color: #0d0d2b;
@@ -26,6 +25,20 @@ html {
     --text_two:#bdbdbd;
 }
 
+/*botão de voltar*/
+.return{
+    position: fixed;
+    left: 40px;
+    top: 30px;
+}
+
+.return img:hover {
+    transform: scale(1.1);
+}
+.return  img:active{
+    transform:scale(0.9);
+    filter: brightness(0) saturate(100%) invert(7%) sepia(91%) saturate(6405%) hue-rotate(328deg) brightness(106%) contrast(100%);
+}
 
 .section-line{
     border: solid 1px;
@@ -46,4 +59,7 @@ body {
 
 h2, h3 {
     margin-top: 30px;
+}
+a{
+    color: var(--text_one);
 }

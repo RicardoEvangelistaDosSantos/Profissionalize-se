@@ -28,39 +28,7 @@ function calcularTempoPostagem(dataPostagem) {
 
 // Função para carregar as vagas
 function loadVagasRecomendadas() {
-    fetch('http://localhost:3000/api/vagasrecomendadas')
-        .then(response => response.json())
-        .then(data => {
-            const list = document.getElementById('section-vaga-recomendada');
-            list.innerHTML = '';
-            data.forEach(vaga => {
-                const tempoPostagem = calcularTempoPostagem(vaga.dt_postagem);
-                list.innerHTML +=
-                `<div class="container-vaga">
-                <div class="vaga">
-                    <div class="header-vaga">
-                        <div>
-                        <h4>${vaga.nome_empresa}</h4>
-                            <h2>${vaga.titulo}</h2>
-                            
-                            <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
-                        </div>
-                        <p>${tempoPostagem}</span>
-                    </div>
-                    <div class="body-vaga">
-                        <p>${vaga.descricao}</p>
-                        
-                    </div>
-                    <div class="footer-vaga">
-                        <a href="${vaga.url_vaga}" target="_blank">aaaa</a>
-                        <p>${vaga.status_vaga}</p>
-                    </div>
-                </div>
-                <span>Ver mais detalhes</span>
-            </div>`;
-            });
-        })
-        .catch(err => console.error('Erro ao carregar as vagas:', err));
+   
 }
 
 loadVagasRecomendadas();
@@ -76,27 +44,27 @@ function loadVagas() {
                 list.innerHTML +=
                 
                     `<div class="container-vaga">
-                        <div class="vaga">
+                        <div class="vaga" tabindex="-1">
                             <div class="header-vaga">
                                 <div>
-                                <h4>${vaga.nome_empresa}</h4>
+                                    <h4>${vaga.nome_empresa}</h4>
+                                    <h4>${vaga.id_vaga}</h4>
                                     <h2>${vaga.titulo}</h2>
                                     
                                     <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
                                 </div>
-                                <p>${tempoPostagem}</span>
-                            </div>
-                            <div class="body-vaga">
-                                <p>${vaga.descricao}</p>
+                                <p>${vaga.status_vaga}/${tempoPostagem}</p>
                                 
                             </div>
+                            <div class="body-vaga">
+                                <p >${vaga.descricao}"</p>
+                            </div>
                             <div class="footer-vaga">
-                                <a href="${vaga.url_vaga}" target="_blank">aaaa</a>
-                                <p>${vaga.status_vaga}</p>
+                                <a href="${vaga.url_vaga}" target="_blank">Entrar na vaga</a> 
                             </div>
                         </div>
-                        <span>Ver mais detalhes</span>
-                    </div>`;
+                        <span>Ver mais detalhes</span> 
+                    </div>;`;
             });
         })
         .catch(err => console.error('Erro ao carregar as vagas:', err));
@@ -108,6 +76,7 @@ loadVagas();
 
 let arrow = 1;
 let add = 2
+let id = 2
 function arrowLeft() {
     // Verifica se o arrow está maior que 0 para decrementar
     if (arrow > 1) {
@@ -132,7 +101,7 @@ function arrowRight() {
 
     if (arrow == inputRadio.length - 1) {
         const sect_tinder = document.querySelector(".section-tinder");
-        
+        id = id+1
         //Cria novo radio button
         const newRadio = document.createElement("input");
         newRadio.type = "radio";
@@ -143,11 +112,11 @@ function arrowRight() {
         const carouselButton = document.querySelector('.carousel-button');
         sect_tinder.insertBefore(newRadio,carouselButton )
 
-
         // Cria novo item para o carrossel
         const sect_carrosel = document.getElementById("carousel");
         const newItem = document.createElement("div");
         newItem.classList.add("item");
+        newItem.id = `section_vaga_recomendada_${id}`
         sect_carrosel.appendChild(newItem);
 
         // Selecione a folha de estilo existente
@@ -168,7 +137,42 @@ function arrowRight() {
             }
         `, styleSheet.cssRules.length);
 
+        //gera a vaga dentro do item
+        fetch('http://localhost:3000/api/vagasrecomendadas')
+        .then(response => response.json())
+        .then(data => {
+            const vaga_recomendada = document.getElementById(`section_vaga_recomendada_${id}`) 
+            vaga_recomendada.innerHTML += 
+            `
+                <div class="container-vaga">
+                    <div class="vaga">
+                        <div class="header-vaga">
+                            <div>
+                            <h4>${data.nome_empresa}</h4>
+                                <h2>${data.titulo}</h2>
+                                
+                                <p>${data.tipo_contratacao}/${data.localizacao}</p>
+                            </div>
+                            <p>${tempoPostagem}</span>
+                        </div>
+                        <div class="body-vaga">
+                            <p>${data.descricao}</p>
+                            
+                        </div>
+                        <div class="footer-vaga">
+                            <a href="${data.url_vaga}" target="_blank">aaaa</a>
+                            <p>${data.status_vaga}</p>
+                        </div>
+                    </div>
+                    <span>Ver mais detalhes</span>
+                </div>
+    
+            ` 
+        })
+        .catch(err => console.error('Erro ao carregar as vagas:', err));
+
         console.log("Novo item adicionado:", arrow);
+
     }
 
     document.getElementById(`Cradio_${arrow}`).checked = true;

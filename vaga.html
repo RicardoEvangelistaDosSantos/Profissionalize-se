@@ -30,8 +30,7 @@
       </div>
     </nav>
     <div class="header-text  ">
-      <p id="nickname" class="nickname   ">Nickname User</p>
-      
+      <p id="nickname" class="nickname">Nickname User</p>
     </div>
   </header>
   <main>
@@ -50,8 +49,9 @@
       
       <main id="carousel">
         <div class="item"></div>
-        <div class="item"></div>
-        <div class="item"></div>
+        <div class="item" id="section_vaga_recomendada_1"></div>
+        <div class="item" id="section_vaga_recomendada_2"></div>
+
       <main>
     
     </section>
@@ -82,33 +82,51 @@
         <button class="search-buttom btn rounded-pill  " type="submit"><img src="./img/icons/search_icon.svg"></button>
       </form>
     </section>
-    <section id="section-vaga-recomendada">
-    </section>
-    <section id="section-vaga">
-    </section>
-    <div class="container-vaga">
-      <div class="vaga" tabindex="-1">
-          <div class="header-vaga">
-              <div>
-                <h4>${vaga.empresa}</h4>
-                
-                  <h2>${vaga.titulo}</h2>
-                  
-                  <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
-              </div>
-              <p>${vaga.status_vaga}/${tempoPostagem}</p>
-              
-          </div>
-          <div class="body-vaga">
-              <p >adsfsdfadskjfpalsdhfghgjkghkgkgkhjkbpjbfnpasdnfejwnpfabnsjfbaspfnjasnpfndfpauvhibgrbqbjbalkgbbvpasbfjpasdbfbapv aph wef aphsdfbaeasnfpaewbnfpawebjbeaanfepanfpefnagmbpranpvnásknfpaeiuenjkfbgabsdgnjsfdbgofsbgjsfbgpisbgmrebpibjb dgfhgdfhfdghfghdfhgfghdfghfghdfghdtrhfghtdht dthdtfhdfgdhdtrdghtdfhtdhtdfgdhdtdsdrg </p><!--${vaga.descricao}-->
-          </div>
-          <div class="footer-vaga">
-             <a href="${vaga.url_vaga}" target="_blank">Entrar na vaga</a><!--Entrar na vaga--> 
-          </div>
-      </div>
-      <span>Ver mais detalhes</span>
-  </div>
+    <section id="section-vaga-recomendada"></section>
+    <section id="section-vaga"></section>
   </main>
+  <footer>  
+    <div class="footer-shadow"></div>
+    <div class="footer-up">
+        <h3>Social</h3>
+    </div>
+    <div class="footer-main">
+
+        <div class="footer-left">
+            <a href="https://github.com/sarahcrispro" class="a" draggable="false" target="_blank">Sarah Cristina</a>
+            <a href="https://github.com/pedrosantos252" class="a" draggable="false" target="_blank">Pedro Emanoel</a>
+            <a href="https://github.com/GabryelHenryque/" class="a" draggable="false" target="_blank">Gabriel Henrique</a>
+            <a href="https://github.com/queziaqsp" class="a" draggable="false" target="_blank">Quezia dos Santos</a>
+            <a href="https://github.com/RicardoEvangelistaDosSantos" class="a" draggable="false" target="_blank">Ricardo Evangelista</a>
+        </div>
+        <div class="div-line"></div>
+
+        <div class="footer-center">
+            <section class="footerC-instagram">
+               <a href="https://www.instagram.com/profissionalize_se1/" draggable="false" target="_blank"><img class="icon-footer" src="./img/icons/instagram_icon.svg" style="width: 65px;" alt="icone do instargram"></a>
+            </section>
+            <section class="footerC-github">
+               <a href="https://github.com/RicardoEvangelistaDosSantos/Profissionalize-se?tab=readme-ov-file#profissionalize-se" draggable="false" target="_blank"><img  class="icon-footer" src="./css/img-background/icone_2.svg" style="width: 100px;" alt="icone da logo da empresa"></a> 
+            </section>
+            <section class="footerC-linkedin">
+                <a href="mailto:profissionalizeseofc@gmail.com" draggable="false">
+                    <img class="icon-footer" src="./img/icons/gmail_icon.svg" style="width: 65px;" alt="icone do gmail">
+                  </a>
+            </section>
+        </div>
+        <div class="div-line"></div>
+
+        <div class="footer-right ">
+            <a class="a" href="./termouso.html" draggable="false">Temos de Uso</a>
+            <a class="a" href="./politica.html" draggable="false">Politica De Privacidade</a>
+            <!-- <a class="a" href="#" draggable="false">Falar com nosso chatBot</a> -->
+        </div>
+    </div> 
+    <div class="footer-bottom">
+        <div class="bottom-line"></div>
+        <p>© Copyright - Todos os direitos reservados a Profissionalize-se. 2024</p>
+    </div>
+</footer> 
   <script src="js/vaga.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
