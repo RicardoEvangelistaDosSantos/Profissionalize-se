@@ -26,12 +26,9 @@ function calcularTempoPostagem(dataPostagem) {
     }
 }
 
-// Função para carregar as vagas
-function loadVagasRecomendadas() {
-   
-}
 
-loadVagasRecomendadas();
+
+
 
 function loadVagas() {
     fetch('http://localhost:3000/api/vagas')
@@ -40,31 +37,10 @@ function loadVagas() {
             const list = document.getElementById('section-vaga');
             list.innerHTML = '';
             data.forEach(vaga => {
-                const tempoPostagem = calcularTempoPostagem(vaga.dt_postagem);
-                list.innerHTML +=
                 
-                    `<div class="container-vaga">
-                        <div class="vaga" tabindex="-1">
-                            <div class="header-vaga">
-                                <div>
-                                    <h4>${vaga.nome_empresa}</h4>
-                                    <h4>${vaga.id_vaga}</h4>
-                                    <h2>${vaga.titulo}</h2>
-                                    
-                                    <p>${vaga.tipo_contratacao}/${vaga.localizacao}</p>
-                                </div>
-                                <p>${vaga.status_vaga}/${tempoPostagem}</p>
-                                
-                            </div>
-                            <div class="body-vaga">
-                                <p >${vaga.descricao}"</p>
-                            </div>
-                            <div class="footer-vaga">
-                                <a href="${vaga.url_vaga}" target="_blank">Entrar na vaga</a> 
-                            </div>
-                        </div>
-                        <span>Ver mais detalhes</span> 
-                    </div>;`;
+                list.innerHTML += textInner(vaga,"vagas")
+                
+                    
             });
         })
         .catch(err => console.error('Erro ao carregar as vagas:', err));
@@ -74,9 +50,12 @@ loadVagas();
 
 
 
+const Rvaga_1 = document.getElementById("section_vaga_recomendada_1");
+const Rvaga_2 = document.getElementById("section_vaga_recomendada_2");
+const Rvaga_3 = document.getElementById("section_vaga_recomendada_3");
 let arrow = 1;
 let add = 2
-let id = 2
+let id = 3
 function arrowLeft() {
     // Verifica se o arrow está maior que 0 para decrementar
     if (arrow > 1) {
@@ -133,41 +112,38 @@ function arrowRight() {
         styleSheet.insertRule(`
             div.item:nth-of-type(${arrow+add}) {
                 --offset: ${arrow+add};
-                background-color: var(--text_two);
+                background-color: var(--text_one);
+                
+            
             }
         `, styleSheet.cssRules.length);
 
         //gera a vaga dentro do item
-        fetch('http://localhost:3000/api/vagasrecomendadas')
+        fetch('http://localhost:3000/api/vagas')
         .then(response => response.json())
         .then(data => {
-            const vaga_recomendada = document.getElementById(`section_vaga_recomendada_${id}`) 
-            vaga_recomendada.innerHTML += 
-            `
-                <div class="container-vaga">
-                    <div class="vaga">
-                        <div class="header-vaga">
-                            <div>
-                            <h4>${data.nome_empresa}</h4>
-                                <h2>${data.titulo}</h2>
-                                
-                                <p>${data.tipo_contratacao}/${data.localizacao}</p>
-                            </div>
-                            <p>${tempoPostagem}</span>
-                        </div>
-                        <div class="body-vaga">
-                            <p>${data.descricao}</p>
-                            
-                        </div>
-                        <div class="footer-vaga">
-                            <a href="${data.url_vaga}" target="_blank">aaaa</a>
-                            <p>${data.status_vaga}</p>
-                        </div>
-                    </div>
-                    <span>Ver mais detalhes</span>
-                </div>
-    
-            ` 
+            
+            if (!(Rvaga_2.childNodes.length > 0)) {
+                console.log("A div está vazia.");
+
+                Rvaga_2.innerHTML += textInner(data,"vagaRecomendadas")
+                Rvaga_3.innerHTML += textInner(data,"vagaRecomendadas")
+            }
+
+
+            const vaga_recomendada = document.getElementById(`section_vaga_recomendada_${id}`)  
+            
+            const vagaDiv = document.createElement("div");
+            vagaDiv.classList.add("container-vaga");
+            
+            vagaDiv.innerHTML += textInner(data,"vagaRecomendadas");
+            
+            // Adiciona o novo elemento ao carrossel
+            vaga_recomendada.appendChild(vagaDiv);
+            
+
+
+            console.log("vaga:",vaga_recomendada)
         })
         .catch(err => console.error('Erro ao carregar as vagas:', err));
 
@@ -180,5 +156,52 @@ function arrowRight() {
 }
 
 
+function textInner(data,tipoVaga) {
+    if(tipoVaga == "vagas"){
+        const tempoPostagem = calcularTempoPostagem(data.dt_postagem);
+        return `
+        <div class="container-vaga">
+            <div class="vaga" tabindex="-1">
+                <div class="header-vaga">
+                    <div>
+                        <h4>${data.nome_empresa}</h4>
+                        <h4>${data.id_vaga}</h4>
+                        <h2>${data.titulo}</h2>
+                        
+                        <p>${data.tipo_contratacao}/${data.localizacao}</p>
+                    </div>
+                    <p>${data.status_vaga}/${tempoPostagem}</p>
+                    
+                </div>
+                <div class="body-vaga">
+                    <p >${data.descricao}"</p>
+                </div>
+                <div class="footer-vaga">
+                    <a href="${data.url_vaga}" target="_blank">Entrar na vaga</a> 
+                </div>
+            </div>
+            <span>Ver mais detalhes</span> 
+        </div>;`;
+    }else if(tipoVaga == "vagaRecomendadas"){
+        return `
+        <div class="carrossel-container">
+            <div class="left-vaga">
+            <h4>${data.nome_empresa}</h4>
+            <h2>${data.titulo}</h2>
+            <p>${data.tipo_contratacao}/${data.localizacao}</p>
+            <h4>${data.id_vaga}</h4>
+            <a  href="${data.url_vaga}" target="_blank">Entrar na vaga</a> 
+            </div>
+            <div class="right-vaga ">
+                <div class="carrosel-text">
+                    <p >${data.descricao}" </p>
+                </div>
+            </div>
+        </div>
 
+    `
+    }
+
+      
+}
 
