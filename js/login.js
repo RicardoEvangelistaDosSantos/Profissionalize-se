@@ -20,7 +20,8 @@ document.getElementById("login").addEventListener("click", async () => {
 
     if (response.ok) {
       alert(result.mensagem);
-      // Redirecionar para outra página ou realizar outra ação
+      localStorage.setItem('token', result.token); // Armazenar o token no localStorage
+      window.location.href = "perfil.html"; // Redirecionar para a página protegida
     } else {
       alert(`Erro: ${result.mensagem}`);
       
