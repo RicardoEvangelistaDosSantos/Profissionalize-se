@@ -1,4 +1,3 @@
-
 //#region SELECTION CIDADE E ESTADO
 const id_estado = document.getElementById("id_estado");
 const id_cidade = document.getElementById("id_cidade");
@@ -182,13 +181,28 @@ function editprofile() {
 */
 
 //
+document.addEventListener("DOMContentLoaded", async () => {
+  const id_usuario = localStorage.getItem('id_usuario');
+  if (!id_usuario) {
+      alert("Usuário não autenticado.");
+      window.location.href = "./login.html"; // Redireciona para login se não estiver autenticado
+      return;
+  }
 
-// Função para obter parâmetros da URL
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
+  // Use o id_usuario para buscar dados do perfil
+  try {
+      const response = await fetch(`http://localhost:3000/perfil/${id_usuario}`);
+      const perfilData = await response.json();
+      if (response.ok) {
+          // Preencher os dados do perfil na página
+      } else {
+          alert(`Erro: ${perfilData.mensagem}`);
+      }
+  } catch (err) {
+      alert("Erro ao se conectar ao servidor.");
+  }
+});
 
-// Captura o id_usuario
-const id_usuario = getQueryParam('id_usuario');
+const urlParams = new URLSearchParams(window.location.search);
+const id_usuario = urlParams.get('id_usuario');
 console.log('ID do Usuário:', id_usuario);
