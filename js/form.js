@@ -29,7 +29,8 @@ document.getElementById('form-perfil').addEventListener('submit', function (even
     formData.append("cor_fundo", cor_fundo);
     formData.append("foto_perfil", foto_perfil);
     formData.append("foto_capa", foto_capa);
-    formData.append("id_usuario", 1);  // Exemplo de id do usuário
+    const id_usuario = localStorage.getItem('id_usuario');
+    formData.append("id_usuario", id_usuario);  // Exemplo de id do usuário
 
     // Enviar os dados para o servidor com fetch API
     fetch('http://localhost:3000/submit-form', {

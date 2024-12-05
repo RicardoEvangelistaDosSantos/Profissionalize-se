@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "", // Substitua pelo seu password
+    password: "root", // Substitua pelo seu password
     database: "profissionalize_se",  // Certifique-se de que este banco existe
 });
 
@@ -121,6 +121,7 @@ app.post("/login", (req, res) => {
 
     if (senhaValida) {
       const token = jwt.sign({ id: usuarioEncontrado.id, usuario: usuarioEncontrado.usuario }, 'seu-segredo-aqui', { expiresIn: '1h' });
+      console.log(token);
       res.json({ mensagem: "Login realizado com sucesso!" });
     } else {
       res.status(401).json({ mensagem: "Senha inválida" });
@@ -148,10 +149,9 @@ app.get("/protegida", verificarToken, (req, res) => {
   res.json({ mensagem: "Esta é uma rota protegida!", usuarioId: req.usuarioId });
 });
 
-// Rota POST para enviar dados do formulário para o banco de dados
-app.post('/submit-form', upload.fields([{ name: 'foto_perfil' }, { name: 'foto_capa' }]), (req, res) => {
+app.post('/submit-form', verificarToken, upload.fields([{ name: 'foto_perfil' }, { name: 'foto_capa' }]), (req, res) => {
   try {
-      const { nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo, id_usuario } = req.body;
+      const { nome, sobrenome, formacao, resumo, experiencia, telefone, dt_nasc, estado, cidade, cor_fundo } = req.body;
       const foto_perfil = req.files.foto_perfil ? req.files.foto_perfil[0].filename : null;
       const foto_capa = req.files.foto_capa ? req.files.foto_capa[0].filename : null;
 
@@ -159,6 +159,9 @@ app.post('/submit-form', upload.fields([{ name: 'foto_perfil' }, { name: 'foto_c
       if (!foto_perfil || !foto_capa) {
           return res.status(400).json({ message: 'É necessário enviar as fotos de perfil e capa.' });
       }
+
+      // Agora utilizamos req.usuarioId que vem do middleware verificarToken
+      const id_usuario = req.usuarioId;
 
       // Query para inserir os dados no banco de dados
       const query = `
@@ -196,16 +199,25 @@ app.get('/api/vagas', (req, res) => {
 });
 
 // Rota GET para listar todas as vagas recomendadas
-app.get('/api/vagasrecomendadas', (req, res) => {
-  const { id } = req.params;
-  db.query('SELECT v.*, nome_empresa FROM vaga v JOIN teste_voc tv ON v.id_setor = tv.id_setor JOIN perfil p ON tv.id_perfil = p.id_perfil JOIN empresa e ON v.id_empresa = e.id_empresa WHERE p.id_perfil = ?', (err, results) => {
+app.get('/api/vagasrecomendadas', verificarToken, (req, res) => {
+  const id_usuario = req.usuarioId; // Pega o id do usuário do token
+
+  // Consultando vagas recomendadas com base no id_usuario
+  db.query(`
+    SELECT v.*, nome_empresa 
+    FROM vaga v 
+    JOIN teste_voc tv ON v.id_setor = tv.id_setor 
+    JOIN perfil p ON tv.id_perfil = p.id_perfil 
+    JOIN empresa e ON v.id_empresa = e.id_empresa 
+    WHERE p.id_usuario = ?`, [id_usuario], (err, results) => {
       if (err) {
           console.error('Erro ao buscar vagas: ', err);
-          return;
+          return res.status(500).json({ mensagem: "Erro ao buscar vagas recomendadas", erro: err });
       }
       res.send(results);
   });
 });
+
 
 // Inicialização do servidor
 const PORT = 3000;

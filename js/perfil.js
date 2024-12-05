@@ -181,4 +181,14 @@ function editprofile() {
   * id_cidade === cidade de input
 */
 
-// 
+//
+
+// Função para obter parâmetros da URL
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+// Captura o id_usuario
+const id_usuario = getQueryParam('id_usuario');
+console.log('ID do Usuário:', id_usuario);
