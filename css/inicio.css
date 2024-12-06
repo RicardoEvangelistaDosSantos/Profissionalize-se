@@ -11,8 +11,6 @@ html {
     font-family: 'Poppins', sans-serif;
     
 }
-
-
 /*cores*/
 :root{
     --background_color: #0d0d2b;
@@ -251,7 +249,7 @@ body{
     animation-range: entry 0% cover 10%;
 }
 .card-2{
-    background-image: url(); /*colocar imagem aqui >>>>>>>>>>>>>>>>>> ./img-background/student_pedro.svg*/
+    background-image: url('./img-background/student_pedro.svg'); /*colocar imagem aqui >>>>>>>>>>>>>>>>>> ./img-background/student_pedro.svg*/
     background-size: cover;
     transform: 10px;
     transform: translateY(10px);
@@ -260,7 +258,7 @@ body{
     animation-range: entry 0% cover 15%;
 }
 .card-3{
-    background-image: url(); /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
+    background-image: url('./img-background/student_quezia.svg'); /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
     background-size: cover;
     transform: 15px;
     transform: translateY(10px);

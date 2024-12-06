@@ -10,13 +10,11 @@
   --text_two:#bdbdbd;
 }
 body{
-  background-color: var(--background_color)/* rgb(112, 83, 135)*/;
-  height: 100vh;
+ background-color: var(--background_color);
 }
 
 /*scrollbar*/
 ::-webkit-scrollbar{
-
   height: 10px;
   width: 5px;
   
@@ -142,11 +140,12 @@ main#carousel {
   justify-content: center;
   overflow: hidden;
   transform-style: preserve-3d;
-  perspective: 200px;
+  /* perspective: 200px; */
   --items: 1000;
   --middle: 1;
   --position: 1;
-  pointer-events: none;
+  pointer-events: none; 
+  border-radius: 30px;
   
 }
 
@@ -172,7 +171,7 @@ div.item:nth-of-type(1) {
  div.item:nth-of-type(2) {
   --offset: 2;
   background-color: var(--text_one);
-  
+
 }
 div.item:nth-of-type(3) {
   --offset: 3;

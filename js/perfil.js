@@ -57,10 +57,12 @@ function selectCidade() {
 //#region INPUT COLOR
 
 const inputColor = document.getElementById("inputColor")
-const background = document.getElementById('main')
+const background = document.querySelector('.body')
+const footer_background = document.querySelector('.footer-shadow')
 addEventListener('change', (event) => {
     color = event.target.value
-    background.style.backgroundColor = color
+    background.style.backgroundColor = color;
+    footer_background.style.backgroundColor = color;
 })
 
 //#endregion
@@ -191,8 +193,8 @@ function editprofile() {
 document.addEventListener("DOMContentLoaded", async () => {
   const id_usuario = localStorage.getItem('id_usuario');
   if (!id_usuario) {
-      alert("Usuário não autenticado.");
-      window.location.href = "./login.html"; // Redireciona para login se não estiver autenticado
+      // alert("Usuário não autenticado.");
+      // window.location.href = "./login.html"; // Redireciona para login se não estiver autenticado
       return;
   }
 
@@ -203,7 +205,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (response.ok) {
           // Preencher os dados do perfil na página
       } else {
-          alert(`Erro: ${perfilData.mensagem}`);
+          // alert(`Erro: ${perfilData.mensagem}`);
       }
   } catch (err) {
       alert("Erro ao se conectar ao servidor.");

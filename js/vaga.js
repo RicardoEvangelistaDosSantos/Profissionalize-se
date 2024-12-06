@@ -48,6 +48,35 @@ function loadVagas() {
 
 loadVagas();
 
+let dataRecomendadas = []
+function loadVagasRecomendadas() {
+    fetch('http://localhost:3000/api/vagas')
+    .then(response => response.json())
+    .then(data => {
+    
+        data.forEach(vaga => {
+            
+
+                
+
+
+
+                    // nome:data.nome_empresa,
+                    // titulo:data.titulo,
+                    // contratacao:data.tipo_contratacao,
+                    // localizacao:data.localizacao,
+                    // url_vaga:data.url_vaga,
+                    // descricao:data.descricao
+                
+            
+                
+        });
+    })
+    .catch(err => console.error('Erro ao carregar as vagas:', err));
+}
+
+
+
 async function listarVagasRecomendadas() {
     const id_usuario = localStorage.getItem('id_usuario'); // Obtém o id_usuario do localStorage
 
@@ -161,8 +190,9 @@ function arrowRight() {
             const vaga_recomendada = document.getElementById(`section_vaga_recomendada_${id}`)  
             
             const vagaDiv = document.createElement("div");
-            vagaDiv.classList.add("container-vaga");
             
+            vagaDiv.classList.add("container-vaga");
+            console.log("vagaaa:",vagaDiv)
             vagaDiv.innerHTML += textInner(data,"vagaRecomendadas");
             
             // Adiciona o novo elemento ao carrossel
@@ -170,7 +200,7 @@ function arrowRight() {
             
 
 
-            console.log("vaga:",vaga_recomendada)
+            
         })
         .catch(err => console.error('Erro ao carregar as vagas:', err));
 

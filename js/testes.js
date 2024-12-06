@@ -4,7 +4,9 @@ const quizData = quest((linkClicked -1)) //pega o primeiro formulario
 //0,1,2,3,4
 function quest(quest) {
  const _quest = [
-    [],
+    [
+        
+    ],
     [    
         {
             question: "Qual tipo de tarefa você mais gosta de realizar no seu trabalho?",
@@ -114,7 +116,6 @@ function quest(quest) {
  
     return _quest[quest]
 }
-
 
 let currentQuestionIndex = 0;
 let userAnswers = [];  // Armazena as respostas
