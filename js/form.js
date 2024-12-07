@@ -1,7 +1,15 @@
-document.getElementById('form-perfil').addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o envio tradicional do formulário
+document.getElementById('form-perfil').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-    // Criar FormData para enviar arquivos e dados ao servidor
+    const token = localStorage.getItem('token');
+    const id_usuario = localStorage.getItem('id_usuario');
+
+    if (!token) {
+        alert('Usuário não autenticado');
+        window.location.href = './login.html';
+        return;
+    }
+
     const formData = new FormData();
     formData.append('nome', document.getElementById('nome').value);
     formData.append('sobrenome', document.getElementById('sobrenome').value);
@@ -13,29 +21,25 @@ document.getElementById('form-perfil').addEventListener('submit', function (even
     formData.append('estado', document.getElementById('id_estado').value);
     formData.append('cidade', document.getElementById('id_cidade').value);
     formData.append('cor_fundo', document.getElementById('inputColor').value);
-
-    // Adicionar as fotos de perfil e capa
-    formData.append('foto_perfil', document.getElementById('file_icon').files[0]);
-    formData.append('foto_capa', document.getElementById('file_banner').files[0]);
-    
-    // ID do usuário (no backend você pegará o id do usuário logado)
     formData.append('id_usuario', id_usuario);
 
-    // Enviar os dados para o servidor
-    fetch('http://localhost:3000/submit-form', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch('http://localhost:3000/submit-form', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        const data = await response.json();
         if (data.message) {
             alert('Perfil criado com sucesso!');
         } else {
             alert('Erro ao criar perfil');
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Erro:', error);
         alert('Erro ao enviar os dados');
-    });
+    }
 });
