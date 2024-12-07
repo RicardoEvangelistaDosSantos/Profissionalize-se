@@ -49,30 +49,7 @@ function loadVagas() {
 loadVagas();
 
 
-
-// function loadVagasRecomendadas() {
-//     fetch('http://localhost:3000/api/vagas')
-//     .then(response => response.json())
-//     .then(data => {
-//             data.forEach(vaga => {
-            
-//                 let objVagas = {
-//                     nome :  vaga.nome_empresa,
-//                     titulo : vaga.titulo,
-//                     contratacao : vaga.tipo_contratacao,
-//                     localizacao : vaga.localizacao,
-//                     url_vaga : vaga.url_vaga,
-//                     descricao : vaga.descricao
-//                 }
-//                 dataRecomendadas.push(objVagas)
-//                // console.log(dataRecomendadas)
-               
-            
-//         });
-//     })
-//     .catch(err => console.error('Erro ao carregar as vagas:', err));
-
-//-------------------------------------------------------------------------------------------------------- aqui senhor gabriel bonitão
+//-------------------------------------------------------------------------------------------------------- aqui senhor gabriel 
 let dataRecomendadas = []
 async function loadVagasRecomendadas() {
     try {
@@ -101,14 +78,6 @@ async function loadVagasRecomendadas() {
     }
     
 }
-
-// (async () =>{
-//     await loadVagasRecomendadas()
-//     console.log("a:",dataRecomendadas[4].nome)
-// })();
-
-
-
 async function listarVagasRecomendadas() {
     const id_usuario = localStorage.getItem('id_usuario'); // Obtém o id_usuario do localStorage
 
@@ -132,18 +101,18 @@ async function listarVagasRecomendadas() {
         alert("Erro ao se conectar ao servidor.");
     }
 }
-
+//-----------------------CARROSSEL COM VAGAS---------------------------------
 // Chame a função para listar as vagas recomendadas quando a página carregar
 document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
-
-
-
 
 const Rvaga_2 = document.getElementById("section_vaga_recomendada_2");
 const Rvaga_3 = document.getElementById("section_vaga_recomendada_3");
 let arrow = 1;
 let add = 2
 let id = 3
+
+
+
 function arrowLeft() {
     // Verifica se o arrow está maior que 0 para decrementar
     if (arrow > 1) {
@@ -160,6 +129,7 @@ async function arrowRight() {
     const inputRadio = document.querySelectorAll(".section-tinder input[type='radio']");
     console.log("lengt:",dataRecomendadas)
 
+
     if (arrow < (dataRecomendadas.length + 1 ) ) { arrow = arrow + 1; } 
 
     if (arrow == inputRadio.length - 1) {
@@ -173,9 +143,8 @@ async function arrowRight() {
         console.log("id: ",id)
         if (!(Rvaga_2.childNodes.length > 0)) {
             console.log("criou 2 elemento");
-
-             Rvaga_2.innerHTML += textInner(dataRecomendadas[0],"vagaRecomendadas")
-             Rvaga_3.innerHTML += textInner(dataRecomendadas[1],"vagaRecomendadas")
+            Rvaga_2.innerHTML += textInner(dataRecomendadas[0],"vagaRecomendadas")
+            Rvaga_3.innerHTML += textInner(dataRecomendadas[1],"vagaRecomendadas")
         }
         if(!(vaga_recomendada.childNodes.length > 0)){
             console.log("criou: ",id-2)
@@ -275,6 +244,13 @@ function textInner(data,tipoVaga) {
 }
 (async () => {
     await loadVagasRecomendadas();
+    let  section_tinder = document.querySelector('.section-tinder')
+    if(!dataRecomendadas.length){
+      
+         section_tinder.style.display = 'none';
+      }else{
+        section_tinder.style.display = 'block';
+      }
     document.getElementById('arrow_right').addEventListener("click", () => {
         arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
     });
