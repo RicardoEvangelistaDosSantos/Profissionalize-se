@@ -57,10 +57,12 @@ function selectCidade() {
 //#region INPUT COLOR
 
 const inputColor = document.getElementById("inputColor")
-const background = document.getElementById('main')
+const background = document.querySelector('.body')
+const footer_background = document.querySelector('.footer-shadow')
 addEventListener('change', (event) => {
     color = event.target.value
-    background.style.backgroundColor = color
+    background.style.backgroundColor = color;
+    footer_background.style.backgroundColor = color;
 })
 
 //#endregion
@@ -210,7 +212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           // Preencher os dados do perfil na página
           // Exemplo: document.getElementById('nome').innerText = perfilData.nome;
       } else {
-          alert(`Erro: ${perfilData.mensagem}`);
+          // alert(`Erro: ${perfilData.mensagem}`);
       }
   } catch (err) {
       alert("Erro ao buscar perfil.");

@@ -21,12 +21,6 @@
 }
 
 
-/* Corpo da página */
-body {
-    min-height: 100vh;
-    background: linear-gradient(var(--background_color_two) , var(--background_color));
-}
-
 /*scrollbar*/
 ::-webkit-scrollbar{
 
