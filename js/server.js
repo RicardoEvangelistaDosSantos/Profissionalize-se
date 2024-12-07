@@ -32,6 +32,39 @@ db.connect((err) => {
     console.log("Conectado ao banco de dados");
 });
 
+app.post("/registrar", async (req, res) => {
+    const { nome_completo, email, cpf, senha } = req.body;
+  
+    if (!nome_completo || !email || !cpf || !senha) {
+      return res.status(400).json({ mensagem: "Todos os campos são obrigatórios!" });
+    }
+  
+    try {
+      const senhaCriptografada = await bcrypt.hash(senha, 10);
+      const sql = "INSERT INTO usuario (nome_completo, email, cpf, senha) VALUES (?, ?, ?, ?)";
+      
+      db.query(sql, [nome_completo, email, cpf, senhaCriptografada], (err, result) => {
+        if (err) {
+          if (err.code === "ER_DUP_ENTRY") {
+            return res.status(400).json({ mensagem: "Usuário já existe" });
+          }
+          return res.status(500).json({ mensagem: "Erro ao registrar o usuário", erro: err });
+        }
+        
+        // Aqui você pode obter o id do usuário recém-criado
+        const id_usuario = result.insertId; // O ID do novo registro
+  
+        // Retorna a resposta com o id_usuario
+        res.json({ 
+          mensagem: "Usuário registrado com sucesso!", 
+          id_usuario: id_usuario // Aqui está a variável id_usuario
+        });
+      });
+    } catch (erro) {
+      res.status(500).json({ mensagem: "Erro ao criptografar a senha", erro: erro.message });
+    }
+  });
+
 // Middleware de autenticação
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
