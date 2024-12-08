@@ -10,7 +10,10 @@
   --text_two:#bdbdbd;
 }
 body{
- background-color: var(--background_color);
+  background-color: var(--background_color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /*scrollbar*/
@@ -18,7 +21,6 @@ body{
   height: 10px;
   width: 5px;
   
-  /*animation: background-bar 4s alternate infinite;*/
 }
 ::-webkit-scrollbar-thumb{
   background-color: var(--text_two);
@@ -109,10 +111,14 @@ body{
 
 
 /*---------pricipal-------*/
+main{  
+  flex: 1;
+  margin-top: 10%;
+}
 .main{
   display: flex;
   flex-direction: column;
-  
+
 }
 
 
@@ -121,8 +127,6 @@ body{
 
 .section-tinder{
   height: 600px;
-  margin: 0;
-  margin-top: 50px;
   display: grid;
   grid-template-rows: 500px 100px;
   grid-template-columns: 1fr 30px 30px 30px 1fr;
@@ -136,7 +140,8 @@ main#carousel {
   width: 1000px;
   height: 500px;
   display: flex;
-  align-items: center;
+  padding: 20px;
+  /* align-items: center; */
   justify-content: center;
   overflow: hidden;
   transform-style: preserve-3d;

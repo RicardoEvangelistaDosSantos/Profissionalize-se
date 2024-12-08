@@ -226,3 +226,44 @@ function setLink(linkNumber) {
   // Armazena o link clicado no sessionStorage
   sessionStorage.setItem('clickedLink', linkNumber);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*carrossel*/
+let arrow = 1;
+function arrowLeft() {
+    // Verifica se o arrow está maior que 0 para decrementar
+    if (arrow > 1) {
+        arrow = arrow - 1;
+    }
+
+    // Marca o radio button correspondente
+    document.getElementById(`Cradio_${arrow}`).checked = true;
+    console.log("left:", arrow);
+}
+
+async function arrowRight() {
+
+   
+
+    if (arrow < (10 ) ) { arrow = arrow + 1; } 
+
+
+    document.getElementById(`Cradio_${arrow}`).checked = true;
+    console.log("right:", arrow);
+}
+
