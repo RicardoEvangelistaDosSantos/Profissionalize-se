@@ -20,7 +20,7 @@ document.getElementById("login").addEventListener("click", async () => {
             localStorage.setItem('token', result.token);
             localStorage.setItem('id_usuario', result.id_usuario);
             alert(result.mensagem);
-            window.location.href = "../profissionalize-se/perfil.html";
+            window.location.href = "../perfil.html";
         } else {
             alert(`Erro: ${result.mensagem}`);
         }

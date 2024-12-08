@@ -110,28 +110,65 @@ async function loadVagasRecomendadas() {
 
 
 async function listarVagasRecomendadas() {
-    const id_usuario = localStorage.getItem('id_usuario'); // Obtém o id_usuario do localStorage
+    const token = localStorage.getItem('token');
 
-    if (!id_usuario) {
+    if (!token) {
         alert("Você precisa estar logado para ver as vagas recomendadas.");
         return;
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/vagasrecomendadas?id_usuario=${id_usuario}`);
+        const response = await fetch(`http://localhost:3000/api/vagasrecomendadas`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
         const vagas = await response.json();
 
         if (response.ok) {
-            // Aqui você deve implementar a lógica para exibir as vagas na interface
-            console.log(vagas); // Exemplo de log das vagas
-            // Adicione o código para renderizar as vagas na página
+            // Limpa o array anterior
+            dataRecomendadas = [];
+
+            // Popula o array com as vagas recomendadas
+            vagas.forEach(vaga => {
+                let objVagas = {
+                    nome_empresa: vaga.nome_empresa,
+                    titulo: vaga.titulo,
+                    tipo_contratacao: vaga.tipo_contratacao,
+                    localizacao: vaga.localizacao,
+                    url_vaga: vaga.url_vaga,
+                    descricao: vaga.descricao
+                };
+                dataRecomendadas.push(objVagas);
+            });
+
+            // Se não houver vagas recomendadas, mostra mensagem
+            if (dataRecomendadas.length === 0) {
+                console.log("Nenhuma vaga recomendada encontrada.");
+                // Opcional: mostrar mensagem na interface
+            }
+
         } else {
             alert(`Erro: ${vagas.mensagem}`);
         }
     } catch (err) {
+        console.error("Erro ao buscar vagas recomendadas:", err);
         alert("Erro ao se conectar ao servidor.");
     }
 }
+
+// Modificar a função de carregamento
+(async () => {
+    await loadVagasRecomendadas(); // Carrega todas as vagas
+    await listarVagasRecomendadas(); // Carrega vagas recomendadas
+
+    document.getElementById('arrow_right').addEventListener("click", () => {
+        arrowRight(dataRecomendadas);
+    });
+})();
 
 // Chame a função para listar as vagas recomendadas quando a página carregar
 document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
@@ -279,12 +316,3 @@ function textInner(data,tipoVaga) {
         arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
     });
 })();
-
-
-
-
-
-const urlParams = new URLSearchParams(window.location.search);
-const id_usuario = urlParams.get('id_usuario');
-console.log('ID do Usuário:', id_usuario);
-

@@ -189,35 +189,35 @@ function editprofile() {
   * id_cidade === cidade de input
 */
 
-//
-document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem('token');
-  const id_usuario = localStorage.getItem('id_usuario');
+// //
+// document.addEventListener("DOMContentLoaded", async () => {
+//   const token = localStorage.getItem('token');
+//   const id_usuario = localStorage.getItem('id_usuario');
 
-  if (!token || !id_usuario) {
-      alert("Usuário não autenticado.");
-      window.location.href = "./ login.html";
-      return;
-  }
+//   if (!token || !id_usuario) {
+//       alert("Usuário não autenticado.");
+//       window.location.href = "./ login.html";
+//       return;
+//   }
 
-  try {
-      const response = await fetch(`http://localhost:3000/perfil`, {
-          method: 'GET',
-          headers: {
-              'Authorization': `Bearer ${token}`
-          }
-      });
-      const perfilData = await response.json();
-      if (response.ok) {
-          // Preencher os dados do perfil na página
-          // Exemplo: document.getElementById('nome').innerText = perfilData.nome;
-      } else {
-          // alert(`Erro: ${perfilData.mensagem}`);
-      }
-  } catch (err) {
-      alert("Erro ao buscar perfil.");
-  }
-});
+//   try {
+//       const response = await fetch(`http://localhost:3000/perfil`, {
+//           method: 'GET',
+//           headers: {
+//               'Authorization': `Bearer ${token}`
+//           }
+//       });
+//       const perfilData = await response.json();
+//       if (response.ok) {
+//           // Preencher os dados do perfil na página
+//           // Exemplo: document.getElementById('nome').innerText = perfilData.nome;
+//       } else {
+//           // alert(`Erro: ${perfilData.mensagem}`);
+//       }
+//   } catch (err) {
+//       alert("Erro ao buscar perfil.");
+//   }
+// });
 
 
 

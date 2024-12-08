@@ -1,12 +1,9 @@
 const linkClicked = sessionStorage.getItem('clickedLink');
 const quizData = quest((linkClicked -1)) //pega o primeiro formulario
 
-//0,1,2,3,4
+console.log(linkClicked);
 function quest(quest) {
  const _quest = [
-    [
-        
-    ],
     [    
         {
             question: "Qual tipo de tarefa você mais gosta de realizar no seu trabalho?",
@@ -109,18 +106,115 @@ function quest(quest) {
             ]
         }
     ],
-    [],
-    [],
-    []
+    [
+        {
+            question: "Quando você recebe um novo projeto ou tarefa, como você age?",
+            options: [
+                "A) Já começo a trabalhar imediatamente, buscando maneiras de executar e entregar rapidamente.",
+                "B) Primeiro, analiso a situação e procuro soluções inovadoras para otimizar o projeto.",
+                "C) Prefiro organizar todos os detalhes antes de começar, para garantir que nada será esquecido.",
+                "D) Gosto de entender os objetivos, as necessidades das pessoas envolvidas e como posso me relacionar com elas para que o projeto funcione bem.",
+                "E) Identifico rapidamente os pontos mais críticos e me concentro neles, mantendo o foco nos resultados."
+            ]
+        },
+        {
+            question: "Como você lida com mudanças no ambiente de trabalho?",
+            options: [
+                "A) Adapto-me rapidamente e procuro encontrar soluções para os novos desafios.",
+                "B) Tento analisar as implicações dessa mudança e pensar em novas maneiras de melhorar o processo.",
+                "C) Aceito a mudança, mas me esforço para entender todos os detalhes antes de agir.",
+                "D) Prefiro que a mudança seja discutida com todos antes, para garantir que todos se sintam confortáveis com ela.",
+                "E) Busco soluções rápidas e práticas, mantendo o foco em resultados imediatos."
+            ]
+        },
+        {
+            question: "O que te motiva a atingir suas metas?",
+            options: [
+                "A) A satisfação de ver o projeto concluído de maneira eficiente e dentro do prazo.",
+                "B) A possibilidade de criar algo novo, inovador e que tenha um impacto significativo.",
+                "C) A organização e os dados claros que me permitem ver meu progresso e ajustar o plano conforme necessário.",
+                "D) O feedback positivo das pessoas com quem trabalho, e o senso de que estou colaborando para o sucesso da equipe.",
+                "E) Superar desafios e ver os resultados concretos do meu esforço."
+            ]
+        },
+        {
+            question: "Como você prefere resolver um problema no trabalho?",
+            options: [
+                "A) Tomando a iniciativa e buscando a solução mais prática e eficaz o mais rápido possível.",
+                "B) Pensando em novas soluções ou abordagens criativas para o problema.",
+                "C) Analisando dados, buscando informações e realizando um planejamento detalhado antes de agir.",
+                "D) Conversando com os colegas para entender diferentes perspectivas e encontrar uma solução colaborativa.",
+                "E) Priorizando a solução que leve a um resultado rápido e tangível."
+            ]
+        },
+        {
+            question: "Qual tipo de ambiente de trabalho você considera mais produtivo?",
+            options: [
+                "A) Um ambiente dinâmico, onde posso atuar de forma independente e cumprir tarefas com eficiência.",
+                "B) Um ambiente criativo, com liberdade para experimentar e propor novas ideias.",
+                "C) Um ambiente bem estruturado, onde tudo é planejado e organizado para facilitar a execução.",
+                "D) Um ambiente colaborativo, onde as pessoas trocam ideias e trabalham juntas para resolver problemas.",
+                "E) Um ambiente focado em resultados, onde posso definir metas claras e alcançar objetivos de forma eficiente."
+            ]
+        },
+        {
+            question: "Quando você trabalha em equipe, qual é o seu papel natural?",
+            options: [
+                "A) Proponho ideias práticas e sou responsável por executar as tarefas que vão gerar resultados rápidos.",
+                "B) Tento sempre trazer novas ideias e soluções criativas para melhorar o trabalho em grupo.",
+                "C) Organizo e planejo as tarefas, garantindo que todos saibam o que fazer e quando.",
+                "D) Gosto de ouvir as opiniões dos outros e encontrar maneiras de resolver conflitos ou melhorar a dinâmica do time.",
+                "E) Foco em liderar a equipe e garantir que todos estejam alinhados com as metas e resultados."
+            ]
+        },
+        {
+            question: "Como você prefere tomar decisões importantes no trabalho?",
+            options: [
+                "A) Tomo a decisão rapidamente, com base nas informações disponíveis e nos objetivos imediatos.",
+                "B) Busco alternativas criativas e penso em como posso inovar na solução.",
+                "C) Analisando todos os dados possíveis e avaliando as consequências antes de agir.",
+                "D) Consultando outras pessoas para obter diferentes perspectivas antes de tomar uma decisão.",
+                "E) Tomo a decisão com base em resultados passados, buscando sempre o melhor desempenho."
+            ]
+        },
+        {
+            question: "O que te ajuda a se concentrar no trabalho?",
+            options: [
+                "A) Ter uma lista clara de tarefas a serem realizadas e cumprir os prazos.",
+                "B) Trabalhar em um ambiente que me permita ser criativo e propor novas ideias.",
+                "C) Planejar meu dia de forma organizada e acompanhar o progresso de cada tarefa.",
+                "D) Interagir com os outros e trabalhar de forma colaborativa, trocando ideias e aprendendo com a equipe.",
+                "E) Focar em atingir metas concretas e ver o progresso ao longo do tempo."
+            ]
+        },
+        {
+            question: "Qual é a sua reação quando um projeto não sai como o esperado?",
+            options: [
+                "A) Vou direto ao ponto, tentando corrigir rapidamente o que deu errado e ajustando a execução.",
+                "B) Busco uma maneira de melhorar o processo e pensar em soluções criativas para que não se repita.",
+                "C) Analisarei detalhadamente o que deu errado, aprenderei com os erros e ajustarei os planos para seguir em frente.",
+                "D) Prefiro discutir com a equipe para entender o que aconteceu e encontrar soluções em conjunto.",
+                "E) Vejo isso como uma oportunidade de revisar as metas e os resultados, tomando ações rápidas para corrigir a rota."
+            ]
+        },
+        {
+            question: "O que você mais valoriza em um ambiente de trabalho?",
+            options: [
+                "A) Ser reconhecido pela entrega de resultados e pela eficiência no cumprimento de prazos.",
+                "B) Ter liberdade para expressar minha criatividade e propor novas ideias.",
+                "C) Ter processos claros e bem definidos para facilitar o trabalho e a tomada de decisões.",
+                "D) Um ambiente colaborativo e de apoio, onde as pessoas trabalham juntas para alcançar objetivos comuns.",
+                "E) A possibilidade de trabalhar com foco em metas e resultados mensuráveis."
+            ]
+        }
+    ],
  ]
  
     return _quest[quest]
 }
 
 let currentQuestionIndex = 0;
-let userAnswers = [];  // Armazena as respostas
-let currentSelection = null; // Guarda a seleção atual
-let clickCount = 0;  // Conta o número de cliques
+let selectedOptions = [];
 
 const quizContainer = document.getElementById("quiz-container");
 const buttons = document.querySelectorAll('.hexagon-button');
@@ -133,72 +227,81 @@ function shuffle(array) {
 }
 
 function loadQuestion() {
+    if (currentQuestionIndex >= quizData.length) {
+        console.log('Todas as perguntas foram respondidas.');
+        return;
+    }
+
     const currentQuestion = quizData[currentQuestionIndex];
 
-    // Cria um array de opções com número e texto
-    const optionsWithNumbers = currentQuestion.options.map((option, index) => {
-        return {
-            number: index + 1,  // 1, 2, 3, 4, 5
-            text: option.substring(3),  // O texto da alternativa
-            originalIndex: index       // Mantém o índice original para rastrear
-        };
-    });
+    if (!currentQuestion) {
+        console.error('Pergunta não encontrada para o índice:', currentQuestionIndex);
+        return;
+    }
 
-    // Embaralha as opções, mas mantém a relação com o índice original
+    const optionsWithNumbers = currentQuestion.options.map((option, index) => ({
+        number: index + 1,
+        text: option.substring(3), // Remove a letra (A, B, C, etc.)
+    }));
+
     shuffle(optionsWithNumbers);
 
-    // Atualiza a pergunta e as opções
-    quizContainer.innerHTML = `
-        <h3>${currentQuestion.question}</h3>
-    `;
+    quizContainer.innerHTML = `<h3>${currentQuestion.question}</h3>`;
 
-    // Atualiza as opções nos botões
     buttons.forEach((button, index) => {
         button.innerHTML = `<span>${optionsWithNumbers[index].text}</span>`;
-        button.onclick = () => buttonSelect(optionsWithNumbers[index], button);
+        button.onclick = () => buttonSelect(optionsWithNumbers[index].number - 1); // Armazena o índice original
     });
-
-    // Reseta o estado de resposta
-    userAnswers[currentQuestionIndex] = null;
-    // Remove a seleção anterior
-    buttons.forEach(button => button.classList.remove('selected'));
 }
 
-function buttonSelect(option, buttonElement) {
-    // Se a opção foi selecionada pela primeira vez
-    if (currentSelection === null) {
-        currentSelection = option.number;  // Marca a opção atual
-        buttonElement.classList.add('selected'); // Marca visualmente o botão
-        clickCount = 1;  // Primeira seleção, contador de cliques é 1
-    } else {
-        // Se o clique for na mesma opção
-        if (currentSelection === option.number) {
-            if (clickCount === 1) {
-                // Clique duplo na mesma opção, avança para a próxima pergunta
-                nextQuestion();
-            }
-        } else {
-            // Se a opção foi trocada, reseta o contador de cliques e marca a nova opção
-            currentSelection = option.number;
-            clickCount = 1;  // Resetando o contador
-            buttons.forEach(button => button.classList.remove('selected')); // Remove o selecionado
-            buttonElement.classList.add('selected');  // Marca a nova opção selecionada
+function buttonSelect(index) {
+    selectedOptions.push(index);
+    nextQuestion();
+}
+
+
+// Função para enviar o resultado do teste
+function submitTeste(quizIndex, resultado) {
+    const token = localStorage.getItem('token'); // Obtém o token do localStorage
+
+    fetch('http://localhost:3000/submit-teste', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Adiciona o token no cabeçalho
+        },
+        body: JSON.stringify({ quizIndex, resultado }) // Envia os dados do teste
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.mensagem) {
+            alert(data.mensagem); // Exibe mensagem de sucesso ou erro
         }
-    }
+    })
+    .catch(error => {
+        console.error('Erro ao enviar resultado do teste:', error);
+    });
 }
+
 
 function nextQuestion() {
-    // Avança para a próxima pergunta
-    currentQuestionIndex++;
+    currentQuestionIndex++; 
     if (currentQuestionIndex < quizData.length) {
-        loadQuestion();
-        currentSelection = null;  // Reseta a seleção atual
-        clickCount = 0;  // Reseta o contador
-    } else {
-        alert("Você concluiu o quiz!");
-        console.log("Respostas: ", userAnswers);
-    }
+        loadQuestion(); 
+    } else { 
+        const optionCount = selectedOptions.reduce((acc, option) => { 
+            acc[option] = (acc[option] || 0) + 1; 
+            return acc; 
+        }, {}); 
+
+        const mostSelectedOption = Object.keys(optionCount).reduce((a, b) => optionCount[a] > optionCount[b] ? a : b); 
+        const result = { 
+            quizIndex: linkClicked, 
+            mostSelectedOption: Number(mostSelectedOption) + 1 // Garante que o valor seja numérico 
+        }; 
+        console.log(result.quizIndex);
+        submitTeste(result.quizIndex, result.mostSelectedOption);
+    } 
 }
 
-// Carrega a primeira pergunta
 loadQuestion();

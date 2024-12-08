@@ -48,7 +48,7 @@ document.getElementById("registrar").addEventListener("click", async (event) => 
     if (response.ok) {
         localStorage.setItem('id_usuario', result.id_usuario);
         alert(result.mensagem);
-        window.location.href = "../Profissionalize-se/login.html";
+        window.location.href = "../login.html";
     } else {
         alert(`Erro: ${result.mensagem}`);
     }

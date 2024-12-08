@@ -23,6 +23,16 @@ document.getElementById('form-perfil').addEventListener('submit', async function
     formData.append('cor_fundo', document.getElementById('inputColor').value);
     formData.append('id_usuario', id_usuario);
 
+    // Adicionando os arquivos de imagem ao FormData
+    const fileIconInput = document.getElementById('file_icon');
+    const fileBannerInput = document.getElementById('file_banner');
+    if (fileIconInput.files[0]) {
+        formData.append('file_icon', fileIconInput.files[0]);
+    }
+    if (fileBannerInput.files[0]) {
+        formData.append('file_banner', fileBannerInput.files[0]);
+    }
+
     try {
         const response = await fetch('http://localhost:3000/submit-form', {
             method: 'POST',

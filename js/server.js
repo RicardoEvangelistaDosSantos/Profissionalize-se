@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const { Console } = require("console");
 const app = express();
 
 // Chave secreta JWT
@@ -31,6 +32,20 @@ db.connect((err) => {
     }
     console.log("Conectado ao banco de dados");
 });
+
+// Configuração do multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, 'uploads'));
+    },
+    filename: (req, file, cb) => {
+        const fileExtension = path.extname(file.originalname);
+        const filename = Date.now() + '-' + Math.round(Math.random() * 1E9) + fileExtension;
+        cb(null, filename);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 app.post("/registrar", async (req, res) => {
     const { nome_completo, email, cpf, senha } = req.body;
@@ -78,20 +93,6 @@ function authenticateToken(req, res, next) {
         next();
     });
 }
-
-// Configuração do multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'uploads'));
-    },
-    filename: (req, file, cb) => {
-        const fileExtension = path.extname(file.originalname);
-        const filename = Date.now() + '-' + Math.round(Math.random() * 1E9) + fileExtension;
-        cb(null, filename);
-    }
-});
-
-const upload = multer({ storage: storage });
 
 // Rota de Login com JWT
 app.post("/login", (req, res) => {
@@ -147,42 +148,187 @@ app.get('/perfil', authenticateToken, (req, res) => {
     });
 });
 
+// Rota para obter perfil
+app.get('/perfil', authenticateToken, (req, res) => {
+    const id_usuario = req.usuario.id_usuario;
+    const query = `SELECT * FROM perfil WHERE id_usuario = ?`;
+
+    db.query(query, [id_usuario], (err, results) => {
+        if (err) {
+            return res.status(500).json({ mensagem: 'Erro ao buscar perfil' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ mensagem: 'Perfil não encontrado' });
+        }
+        res.status(200).json(results[0]); // Retorna o primeiro perfil encontrado
+    });
+});
+
+// Rota para criar ou atualizar perfil
 app.post('/submit-form', authenticateToken, upload.fields([
-    { name: 'foto_perfil', maxCount: 1 }, 
-    { name: 'foto_capa', maxCount: 1 }
+    { name: 'file_icon', maxCount: 1 },
+    { name: 'file_banner', maxCount: 1 }
 ]), (req, res) => {
     const id_usuario = req.usuario.id_usuario;
-    
-    const { 
-        nome, sobrenome, formacao, resumo, telefone, 
-        dt_nasc, estado, cidade, cor_fundo 
-    } = req.body; 
 
-    const foto_perfil = req.files && req.files['foto_perfil'] 
-        ? req.files['foto_perfil'][0].path : null; 
-    const foto_capa = req.files && req.files['foto_capa'] 
-        ? req.files['foto_capa'][0].path : null; 
-
-    const query = `INSERT INTO perfil (
-        id_usuario, nome, sobrenome, formacao, resumo, telefone, 
+    const {
+        nome, sobrenome, formacao, resumo, telefone,
         dt_nasc, estado, cidade, cor_fundo
-    ) VALUES (?, ?,  ?, ?, ?, ?, ?, ?, ?, ?)`;
+    } = req.body;
 
-    const values = [ 
-        id_usuario, nome, sobrenome, formacao, resumo, 
-        telefone, dt_nasc, estado, cidade, cor_fundo, 
-    ]; 
+    const foto_perfil = req.files && req.files['file_icon']
+        ? req.files['file_icon'][0].path : null;
+    const foto_capa = req.files && req.files['file_banner']
+        ? req.files['file_banner'][0].path : null;
 
-    db.query(query, values, (err, result) => { 
-        if (err) { 
-            console.error('Erro ao inserir dados:', err); 
-            return res.status(500).json({ error: 'Erro ao inserir dados' }); 
-        } 
-        res.status(200).json({ 
-            message: 'Perfil criado com sucesso!', 
-            profileId: result.insertId 
-        }); 
-    }); 
+    // Verifica se o perfil já existe
+    const queryCheck = `SELECT * FROM perfil WHERE id_usuario = ?`;
+    db.query(queryCheck, [id_usuario], (err, results) => {
+        if (err) {
+            console.error('Erro ao verificar perfil:', err);
+            return res.status(500).json({ error: 'Erro ao verificar perfil' });
+        }
+
+        if (results.length > 0) {
+            // Atualiza o perfil existente
+            const queryUpdate = `UPDATE perfil SET 
+                nome = ?, sobrenome = ?, formacao = ?, resumo = ?, telefone = ?, 
+                dt_nasc = ?, estado = ?, cidade = ?, cor_fundo = ?, 
+                foto_perfil = ?, foto_capa = ? 
+                WHERE id_usuario = ?`;
+
+            const valuesUpdate = [
+                nome, sobrenome, formacao, resumo, telefone,
+                dt_nasc, estado, cidade, cor_fundo, foto_perfil, , id_usuario
+            ];
+
+            db.query(queryUpdate, valuesUpdate, (err, result) => {
+                if (err) {
+                    console.error('Erro ao atualizar dados:', err);
+                    return res.status(500).json({ error: 'Erro ao atualizar dados' });
+                }
+                res.status(200).json({ message: 'Perfil atualizado com sucesso!' });
+            });
+        } else {
+            // Cria um novo perfil
+            const queryInsert = `INSERT INTO perfil ( 
+                id_usuario, nome, sobrenome, formacao, resumo, telefone, 
+                dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+            const valuesInsert = [
+                id_usuario, nome, sobrenome, formacao, resumo,
+                telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
+            ];
+
+            db.query(queryInsert, valuesInsert, (err, result) => {
+                if (err) {
+                    console.error('Erro ao inserir dados:', err);
+                    return res.status(500).json({ error: 'Erro ao inserir dados' });
+                }
+                res.status(200).json({ message: 'Perfil criado com sucesso!', profileId: result.insertId });
+            });
+        }
+    });
+});
+
+app.post('/submit-teste', authenticateToken, (req, res) => {
+    const id_usuario = req.usuario.id_usuario;
+    const { resultado} = req.body;
+    const quizIndex = parseInt(req.body.quizIndex, 10);
+    
+    // Determina a tabela e os campos com base no índice do teste
+    console.log(quizIndex);
+    if (quizIndex === 1) {
+        // Teste de Vocação - usa id_setor
+        tabelaTeste = 'teste_voc';
+        camposInsert = ['id_usuario', 'id_perfil', 'id_setor'];
+        camposUpdate = ['id_setor'];
+        params = [id_usuario, null, resultado];
+    } else {
+        // Teste de Competência - usa id_resultado
+        tabelaTeste = 'teste_comp';
+        camposInsert = ['id_usuario', 'id_perfil', 'id_resultado'];
+        camposUpdate = ['id_resultado'];
+        params = [id_usuario, null, resultado];
+    }
+    console.log(tabelaTeste, camposInsert,camposUpdate,params);
+
+    // Primeiro, busca o id_perfil do usuário
+    const queryPerfil = 'SELECT id_perfil FROM perfil WHERE id_usuario = ?';
+
+    db.query(queryPerfil, [id_usuario], (errPerfil, resultPerfil) => {
+        if (errPerfil) {
+            return res.status(500).json({
+                mensagem: 'Erro ao buscar perfil do usuário',
+                erro: errPerfil
+            });
+        }
+
+        if (resultPerfil.length === 0) {
+            return res.status(404).json({
+                mensagem: 'Perfil do usuário não encontrado'
+            });
+        }
+
+        const id_perfil = resultPerfil[0].id_perfil;
+        
+        // Atualiza o array de parâmetros com o id_perfil
+        params[1] = id_perfil;
+
+        // Verifica se já existe um registro para este usuário na tabela
+        const queryVerificaExistente = `
+            SELECT * FROM ${tabelaTeste} 
+            WHERE id_usuario = ? AND id_perfil = ?
+        `;
+
+        db.query(queryVerificaExistente, [id_usuario, id_perfil], (errVerifica, resultVerifica) => {
+            if (errVerifica) {
+                return res.status(500).json({
+                    mensagem: 'Erro ao verificar teste existente',
+                    erro: errVerifica
+                });
+            }
+
+            let query, queryParams;
+            if (resultVerifica.length > 0) {
+                // UPDATE se já existir
+                query = `
+                    UPDATE ${tabelaTeste} 
+                    SET ${camposUpdate[0]} = ? 
+                    WHERE id_usuario = ? AND id_perfil = ?
+                `;
+                queryParams = [
+                    params[2],  // Valor a ser atualizado (id_setor ou id_resultado)
+                    id_usuario, 
+                    id_perfil
+                ];
+            } else {
+                // INSERT se não existir
+                query = `
+                    INSERT INTO ${tabelaTeste} 
+                    (${camposInsert.join(', ')}) 
+                    VALUES (?, ?, ?)
+                `;
+                queryParams = params;
+            }
+
+            // Executa a query de INSERT ou UPDATE
+            db.query(query, queryParams, (errTeste, resultTeste) => {
+                if (errTeste) {
+                    return res.status(500).json({
+                        mensagem: 'Erro ao salvar resultado do teste',
+                        erro: errTeste
+                    });
+                }
+
+                res.status(200).json({
+                    mensagem: 'Resultado do teste salvo com sucesso!',
+                    id_teste: resultVerifica.length > 0 ? resultVerifica[0].id : resultTeste.insertId
+                });
+            });
+        });
+    });
 });
 
 // Rota GET para listar todas as vagas
@@ -196,25 +342,28 @@ app.get('/api/vagas', (req, res) => {
   });
 });
 
-// Rota GET para listar vagas recomendadas
-app.get("/api/vagasrecomendadas", (req, res) => {
-    const id_usuario = req.query.id_usuario; // Obtém o id_usuario da query string
+app.get("/api/vagasrecomendadas", authenticateToken, (req, res) => {
+    const id_usuario = req.usuario.id_usuario;
     if (!id_usuario) {
         return res.status(400).json({ mensagem: "ID do usuário é obrigatório." });
     }
-
-    // Aqui você deve implementar a lógica para buscar as vagas recomendadas para o id_usuario
-    const sql = `SELECT v.*, nome_empresa FROM vaga v
-                JOIN teste_voc tv ON v.id_setor = tv.id_setor 
-                JOIN usuario u ON tv.id_usuario = u.id_usuario
-                JOIN empresa e ON v.id_empresa = e.id_empresa
-                WHERE u.id_usuario = ?`; 
+    // Consulta para buscar vagas baseadas no setor do teste vocacional do usuário
+    const sql = `
+        SELECT v.*, e.nome_empresa 
+        FROM vaga v
+        JOIN empresa e ON v.id_empresa = e.id_empresa
+        JOIN teste_voc tv ON v.id_setor = tv.id_setor 
+        WHERE tv.id_usuario = ?
+    `; 
     db.query(sql, [id_usuario], (err, results) => {
         if (err) {
-            return res.status(500).json({ mensagem: "Erro ao buscar vagas recomendadas.", erro: err });
+            return res.status(500).json({ 
+                mensagem: "Erro ao buscar vagas recomendadas.", 
+                erro: err 
+            });
         }
-
-        res.json(results); // Retorna as vagas recomendadas
+        // Se nenhuma vaga for encontrada, retorna array vazio
+        res.json(results || []); 
     });
 });
 
