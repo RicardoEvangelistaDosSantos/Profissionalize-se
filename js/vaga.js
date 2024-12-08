@@ -245,7 +245,6 @@ function textInner(data,tipoVaga) {
                 <div class="header-vaga">
                     <div>
                         <h4>${data.nome_empresa}</h4>
-                        <h4>${data.id_vaga}</h4>
                         <h2>${data.titulo}</h2>
                         <p>${data.tipo_contratacao}/${data.localizacao}</p>
                     </div>

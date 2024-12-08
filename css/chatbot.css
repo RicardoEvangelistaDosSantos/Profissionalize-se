@@ -7,6 +7,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "inter", sans-serif;
+    border-radius: 13px 13px 13px 3px;
+    color: var(--background_color);
 }
 
 /*cores*/
@@ -60,6 +62,7 @@
     background: var(--main_one);
     transition: all 0.2s ease;
     box-shadow: 1px 1px 10px black;
+    
 }
 
 
@@ -204,7 +207,7 @@ body.show-chatbot .chatbot-popup {
 
 .chat-body .bot-message .message-text {
     background: #f2f2f2;
-    border-radius: 13px 13px 13px 3px;
+
 }
 
 .chat-body .user-message .message-text {
