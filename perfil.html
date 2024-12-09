@@ -96,9 +96,6 @@
                             <img src="./img/icons/paintBrush_icon.svg">
                         </button>
                     </div>
-                    <div class="profile-text">
-                        <h4 id="profire_text">descrição da pessoa</h4>
-                    </div>
                 </div>
                 <div class="sec2-center">
                     <div class="quests">
@@ -141,22 +138,22 @@
                 </div>
             </section>
             <section class="section-3">
-                <h1>Formulário de Cadastro</h1>
+                <h1>Dados de perfil</h1>
                 <form id="form-perfil" enctype="multipart/form-data">
 
                     <div class="container">
 
                         <div class="item-1">
                             <div class="group">
-                                <input type="text" id="nome" name="nome">
+                                <input type="text" id="nome" name="nome" maxlength="45">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
-                                <label for="nome">Primeiro Nome</label>
+                                <label for="nome">Nome</label>
                             </div>
                         </div>
                         <div class="item-3">
                             <div class="group">
-                                <input type="text" id="sobrenome" name="sobrenome">
+                                <input type="text" id="sobrenome" name="sobrenome" maxlength="60">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label for="sobrenome">Sobrenome</label>
@@ -164,7 +161,7 @@
                         </div>
                         <div class="item-2">
                             <div class="group">
-                                <input type="tel" id="telefone" name="telefone">
+                                <input type="tel" id="telefone" name="telefone" maxlength="11">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label for="telefone">Telefone</label>
@@ -173,7 +170,7 @@
                         <div class="item-7">
                             <div class="select">
                                 <select class="input-form" id="formacao" name="formacao">
-                                    <option value="">Selecione a sua Escolaridade</option>
+                                    <option value="">Selecione a sua escolaridade</option>
                                     <option value="fundamental-incompleto">Ensino Fundamental Incompleto</option>
                                     <option value="fundamental-completo">Ensino Fundamental Completo</option>
                                     <option value="medio-incompleto">Ensino Médio Incompleto</option>
@@ -207,21 +204,21 @@
                         </div>
                         <div class="item-10">
                             <div class="group">
-                                <label for="file_icon" class="custom-file-label">Selecionar icone</label>
+                                <label for="file_icon" class="custom-file-label">Selecionar foto de perfil</label>
                                 <input type="file" id="file_icon" class="file-input" name="file-icon">
                             </div>
                         </div>
                         <div class="item-11">
                             <div class="group">
-                                <label for="file_banner" class="custom-file-label">Selecionar banner</label>
+                                <label for="file_banner" class="custom-file-label">Selecionar capa de perfil</label>
                                 <input type="file" id="file_banner" class="file-input" name="file-banner">
                             </div>
                         </div>
                         <div class="item-12">
-                            <textarea class="input-form" id="resumo" name="experiencia" rows="5" placeholder="Faça um breve resumo sobre você"></textarea><br><br>
+                            <textarea class="input-form" id="resumo" name="experiencia" rows="5" placeholder="Faça um breve resumo sobre você" maxlength="255"></textarea><br><br>
                         </div>
                         <div class="item-8">
-                            <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Conte-nos sobre suas experiências profissionais"></textarea><br><br>
+                            <textarea class="input-form" id="experiencia" name="experiencia" rows="5" placeholder="Conte-nos sobre suas experiências profissionais" maxlength="255"></textarea><br><br>
                         </div>
                     </div>
                     <div class="form-buttom">
