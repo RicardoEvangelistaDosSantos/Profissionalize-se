@@ -28,6 +28,22 @@ body{
     height: 100vh;
     background-color: var(--background_color);
 }
+
+/*botão de voltar*/
+.return{
+    position: fixed;
+    left: 40px;
+    top: 15px;
+    z-index: 3;
+}
+
+.return img:hover {
+    transform: scale(1.1);
+}
+.return  img:active{
+    transform:scale(0.9);
+    filter: brightness(0) saturate(100%) invert(7%) sepia(91%) saturate(6405%) hue-rotate(328deg) brightness(106%) contrast(100%);
+}
 .quest-container{
     text-align: center;
     color: var(--text_two);
