@@ -241,7 +241,7 @@ body{
     
 }
 .card-1{
-    background-image: url(); /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
+    background-image: url('./img-background/student_sarah.svg'); /*colocar imagem aqui >>>>>>>>>>>>>>>>>>*/
     background-size: cover;
     transform: translateY(10px);
     animation: key-visible-bottom linear;

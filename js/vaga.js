@@ -78,70 +78,70 @@ async function loadVagasRecomendadas() {
     }
     
 }
-async function listarVagasRecomendadas() {
-    const token = localStorage.getItem('token');
+// async function listarVagasRecomendadas() {
+//     const token = localStorage.getItem('token');
 
-    if (!token) {
-        alert("Você precisa estar logado para ver as vagas recomendadas.");
-        return;
-    }
+//     if (!token) {
+//         alert("Você precisa estar logado para ver as vagas recomendadas.");
+//         return;
+//     }
 
-    try {
-        const response = await fetch(`http://localhost:3000/api/vagasrecomendadas`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
+//     try {
+//         const response = await fetch(`http://localhost:3000/api/vagasrecomendadas`, {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         });
 
-        const vagas = await response.json();
+//         const vagas = await response.json();
 
-        if (response.ok) {
-            // Limpa o array anterior
-            dataRecomendadas = [];
+//         if (response.ok) {
+//             // Limpa o array anterior
+//             dataRecomendadas = [];
 
-            // Popula o array com as vagas recomendadas
-            vagas.forEach(vaga => {
-                let objVagas = {
-                    nome_empresa: vaga.nome_empresa,
-                    titulo: vaga.titulo,
-                    tipo_contratacao: vaga.tipo_contratacao,
-                    localizacao: vaga.localizacao,
-                    url_vaga: vaga.url_vaga,
-                    descricao: vaga.descricao
-                };
-                dataRecomendadas.push(objVagas);
-            });
+//             // Popula o array com as vagas recomendadas
+//             vagas.forEach(vaga => {
+//                 let objVagas = {
+//                     nome_empresa: vaga.nome_empresa,
+//                     titulo: vaga.titulo,
+//                     tipo_contratacao: vaga.tipo_contratacao,
+//                     localizacao: vaga.localizacao,
+//                     url_vaga: vaga.url_vaga,
+//                     descricao: vaga.descricao
+//                 };
+//                 dataRecomendadas.push(objVagas);
+//             });
 
-            // Se não houver vagas recomendadas, mostra mensagem
-            if (dataRecomendadas.length === 0) {
-                console.log("Nenhuma vaga recomendada encontrada.");
-                // Opcional: mostrar mensagem na interface
-            }
+//             // Se não houver vagas recomendadas, mostra mensagem
+//             if (dataRecomendadas.length === 0) {
+//                 console.log("Nenhuma vaga recomendada encontrada.");
+//                 // Opcional: mostrar mensagem na interface
+//             }
 
-        } else {
-            alert(`Erro: ${vagas.mensagem}`);
-        }
-    } catch (err) {
-        console.error("Erro ao buscar vagas recomendadas:", err);
-        alert("Erro ao se conectar ao servidor.");
-    }
-}
+//         } else {
+//             alert(`Erro: ${vagas.mensagem}`);
+//         }
+//     } catch (err) {
+//         console.error("Erro ao buscar vagas recomendadas:", err);
+//         alert("Erro ao se conectar ao servidor.");
+//     }
+// }
 
-// Modificar a função de carregamento
-(async () => {
-    await loadVagasRecomendadas(); // Carrega todas as vagas
-    await listarVagasRecomendadas(); // Carrega vagas recomendadas
+// // Modificar a função de carregamento
+// (async () => {
+//     await loadVagasRecomendadas(); // Carrega todas as vagas
+//     await listarVagasRecomendadas(); // Carrega vagas recomendadas
 
-    document.getElementById('arrow_right').addEventListener("click", () => {
-        arrowRight(dataRecomendadas);
-    });
-})();
+//     document.getElementById('arrow_right').addEventListener("click", () => {
+//         arrowRight(dataRecomendadas);
+//     });
+// })();
 
 //-----------------------CARROSSEL COM VAGAS---------------------------------
 // Chame a função para listar as vagas recomendadas quando a página carregar
-document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
+// document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
 
 const Rvaga_2 = document.getElementById("section_vaga_recomendada_2");
 const Rvaga_3 = document.getElementById("section_vaga_recomendada_3");
@@ -283,7 +283,6 @@ function textInner(data,tipoVaga) {
     await loadVagasRecomendadas();
     let  section_tinder = document.querySelector('.section-tinder')
     if(!dataRecomendadas.length){
-      
          section_tinder.style.display = 'none';
       }else{
         section_tinder.style.display = 'block';
