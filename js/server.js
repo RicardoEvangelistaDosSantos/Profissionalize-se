@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "",
+    user: "",
+    password: "root",
     database: "profissionalize_se",
 });
 
@@ -136,17 +136,6 @@ app.post("/login", (req, res) => {
 });
 
 // Rotas protegidas
-app.get('/perfil', authenticateToken, (req, res) => {
-    const id_usuario = req.usuario.id_usuario;
-    const query = `SELECT * FROM perfil WHERE id_usuario = ?`;
-    
-    db.query(query, [id_usuario], (err, results) => {
-        if (err) {
-            return res.status(500).json({ mensagem: 'Erro ao buscar perfil' });
-        }
-        res.status(200).json(results);
-    });
-});
 
 // Rota para obter perfil
 app.get('/perfil', authenticateToken, (req, res) => {
