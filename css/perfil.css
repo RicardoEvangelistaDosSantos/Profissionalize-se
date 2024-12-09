@@ -26,6 +26,7 @@ body{
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: var(--text_one);
 }
 
 /*scrollbar*/
@@ -54,7 +55,7 @@ body{
 .section-2{
     margin-bottom: 50px;
     box-shadow: 2px 2px 20px black;
-    
+    color: var(--text_one);
 }
 /*botão de voltar*/
 .return{

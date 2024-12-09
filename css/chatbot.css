@@ -8,7 +8,7 @@
     box-sizing: border-box;
     font-family: "inter", sans-serif;
     border-radius: 13px 13px 13px 3px;
-    color: var(--background_color);
+
 }
 
 /*cores*/
@@ -68,6 +68,7 @@
 
 body.show-chatbot #chatbot-toggler {
     transform: rotate(90deg);
+        color: var(--background_color);
 }
 
 
@@ -114,6 +115,7 @@ body.show-chatbot .chatbot-popup {
     opacity: 1;
     pointer-events: auto;
     transform: scale(1);
+    
 }
 
 /* Estilização do Header */
@@ -123,6 +125,7 @@ body.show-chatbot .chatbot-popup {
     background: var(--main_one);
     padding: 15px 22px;
     justify-content: space-between;
+    color: var(--background_color);
 }
 
 .chat-header .header-info {
@@ -142,6 +145,7 @@ body.show-chatbot .chatbot-popup {
     color: #fff;
     font-size: 1.31rem;
     font-weight: 600;
+    
 }
 
 .chat-header #close-chatbot {
@@ -156,6 +160,7 @@ body.show-chatbot .chatbot-popup {
     cursor: pointer;
     background: none;
     transition: 0.35s ease;
+
 }
 
 .chat-header #close-chatbot:hover {
@@ -173,12 +178,13 @@ body.show-chatbot .chatbot-popup {
     flex-direction: column;
     scrollbar-width: thin;
     scrollbar-color: #ccccf5 transparent;
+    color: var(--background_color);
 }
 .chat-body .message {
     display: flex;
     gap: 11px;
     align-items: center;
-
+    color: var(--background_color);
 }
 
 .chat-body .bot-message .bot-avatar {
@@ -188,6 +194,7 @@ body.show-chatbot .chatbot-popup {
     align-self: flex-end;
     margin-top: 2px;
     border-radius: 50%;
+    color: var(--background_color);
 }
 
 .chat-body .user-message {
@@ -203,29 +210,33 @@ body.show-chatbot .chatbot-popup {
 
 .chat-body .bot-message.thinking .message-text {
     padding: 2px 16px; 
+    color: var(--background_color);
 }
 
 .chat-body .bot-message .message-text {
     background: #f2f2f2;
-
+    color: var(--background_color);
 }
 
 .chat-body .user-message .message-text {
     color: #fff;
     background: var(--main_one);
     border-radius: 13px 13px 3px 13px;
+    color: var(--text_one);
 }
 
 .chat-body .user-message .attachment {
     width: 50%;
     margin-top:  -7px;
     border-radius: 13px 3px 13px 13px;
+    color: var(--background_color);
 }
 
 .chat-body .message .thinking-indicator {
     display: flex;
     gap: 4px;
     padding-block: 15px;
+    color: var(--background_color);
 }
 
 .chat-body .message .thinking-indicator .dot {
@@ -235,6 +246,7 @@ body.show-chatbot .chatbot-popup {
     border-radius: 50%;
     background: #6f6bc2;
     animation: dotPulse 1.8s ease-in-out infinite;  
+    color: var(--background_color);
 }
 
 .chat-body .message .thinking-indicator .dot:nth-child(1) {
@@ -271,6 +283,7 @@ body.show-chatbot .chatbot-popup {
     width: 100%;
     background: #fff;
     padding: 15px 22px 20px;
+    color: var(--background_color);
 }
 
 .chat-footer .chat-form {
@@ -280,10 +293,12 @@ body.show-chatbot .chatbot-popup {
     background: #fff;
     border-radius: 32px;
     outline: 1px solid #cccce5;
+    color: var(--background_color);
 }
 
 .chat-footer .chat-form:focus-within {
     outline: 2px solid var(--main_one);
+    
 }
 
 .chat-form .message-input {
@@ -299,6 +314,7 @@ body.show-chatbot .chatbot-popup {
     border-radius: inherit;
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
+    color: var(--background_color);
 }
 
 .chat-form .message-input:hover {
