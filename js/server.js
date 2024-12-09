@@ -172,7 +172,7 @@ app.post('/submit-form', authenticateToken, upload.fields([
     const id_usuario = req.usuario.id_usuario;
 
     const {
-        nome, sobrenome, formacao, resumo, telefone,
+        nome, sobrenome, formacao, experiencia, resumo, telefone,
         dt_nasc, estado, cidade, cor_fundo
     } = req.body;
 
@@ -192,13 +192,13 @@ app.post('/submit-form', authenticateToken, upload.fields([
         if (results.length > 0) {
             // Atualiza o perfil existente
             const queryUpdate = `UPDATE perfil SET 
-                nome = ?, sobrenome = ?, formacao = ?, resumo = ?, telefone = ?, 
+                nome = ?, sobrenome = ?, formacao = ?, resumo = ?, experiencia = ?, telefone = ?, 
                 dt_nasc = ?, estado = ?, cidade = ?, cor_fundo = ?, 
                 foto_perfil = ?, foto_capa = ? 
                 WHERE id_usuario = ?`;
 
             const valuesUpdate = [
-                nome, sobrenome, formacao, resumo, telefone,
+                nome, sobrenome, formacao, resumo, experiencia, telefone,
                 dt_nasc, estado, cidade, cor_fundo, foto_perfil, , id_usuario
             ];
 
@@ -212,12 +212,12 @@ app.post('/submit-form', authenticateToken, upload.fields([
         } else {
             // Cria um novo perfil
             const queryInsert = `INSERT INTO perfil ( 
-                id_usuario, nome, sobrenome, formacao, resumo, telefone, 
+                id_usuario, nome, sobrenome, formacao, resumo, experiencia,  telefone, 
                 dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
             const valuesInsert = [
-                id_usuario, nome, sobrenome, formacao, resumo,
+                id_usuario, nome, sobrenome, formacao, resumo, experiencia,
                 telefone, dt_nasc, estado, cidade, cor_fundo, foto_perfil, foto_capa
             ];
 
