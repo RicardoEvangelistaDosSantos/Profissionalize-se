@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "",
+    user: "root",
     password: "root",
     database: "profissionalize_se",
 });
