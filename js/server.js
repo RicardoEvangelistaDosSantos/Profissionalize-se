@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "",
     database: "profissionalize_se",
 });
 
@@ -322,7 +322,7 @@ app.post('/submit-teste', authenticateToken, (req, res) => {
 
 // Rota GET para listar todas as vagas
 app.get('/api/vagas', (req, res) => {
-  db.query('SELECT V.*, nome_empresa FROM vaga v JOIN empresa e ON v.id_empresa = e.id_empresa', (err, results) => {
+  db.query('SELECT V.*, e.nome_empresa FROM vaga v JOIN empresa e ON v.id_empresa = e.id_empresa', (err, results) => {
       if (err) {
           console.error('Erro ao buscar vagas: ', err);
           return;

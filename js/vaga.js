@@ -51,97 +51,101 @@ loadVagas();
 
 //-------------------------------------------------------------------------------------------------------- aqui senhor gabriel 
 let dataRecomendadas = []
-async function loadVagasRecomendadas() {
-    try {
-        const response = await fetch('http://localhost:3000/api/vagas');
-        const data = await response.json();
-
-        // Processando os dados e adicionando-os ao array
-        data.forEach(vaga => {
-            let objVagas = {
-                nome_empresa: vaga.nome_empresa,
-                titulo: vaga.titulo,
-                tipo_contratacao: vaga.tipo_contratacao,
-                localizacao: vaga.localizacao,
-                url_vaga: vaga.url_vaga,
-                descricao: vaga.descricao
-            };
-            dataRecomendadas.push(objVagas);
-        
-        });
-
-        // Agora que os dados estão carregados, podemos exibir o array
-        
-        
-    } catch (err) {
-        console.error('Erro ao carregar as vagas:', err);
-    }
-    
-}
-// async function listarVagasRecomendadas() {
-//     const token = localStorage.getItem('token');
-
-//     if (!token) {
-//         alert("Você precisa estar logado para ver as vagas recomendadas.");
-//         return;
-//     }
-
+// async function loadVagasRecomendadas() {
 //     try {
-//         const response = await fetch(`http://localhost:3000/api/vagasrecomendadas`, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Authorization': `Bearer ${token}`
-//             }
+//         const response = await fetch('http://localhost:3000/api/vagas');
+//         const data = await response.json();
+
+//         // Processando os dados e adicionando-os ao array
+//         data.forEach(vaga => {
+//             let objVagas = {
+//                 nome_empresa: vaga.nome_empresa,
+//                 titulo: vaga.titulo,
+//                 tipo_contratacao: vaga.tipo_contratacao,
+//                 localizacao: vaga.localizacao,
+//                 url_vaga: vaga.url_vaga,
+//                 descricao: vaga.descricao
+//             };
+//             dataRecomendadas.push(objVagas);
+        
 //         });
 
-//         const vagas = await response.json();
-
-//         if (response.ok) {
-//             // Limpa o array anterior
-//             dataRecomendadas = [];
-
-//             // Popula o array com as vagas recomendadas
-//             vagas.forEach(vaga => {
-//                 let objVagas = {
-//                     nome_empresa: vaga.nome_empresa,
-//                     titulo: vaga.titulo,
-//                     tipo_contratacao: vaga.tipo_contratacao,
-//                     localizacao: vaga.localizacao,
-//                     url_vaga: vaga.url_vaga,
-//                     descricao: vaga.descricao
-//                 };
-//                 dataRecomendadas.push(objVagas);
-//             });
-
-//             // Se não houver vagas recomendadas, mostra mensagem
-//             if (dataRecomendadas.length === 0) {
-//                 console.log("Nenhuma vaga recomendada encontrada.");
-//                 // Opcional: mostrar mensagem na interface
-//             }
-
-//         } else {
-//             alert(`Erro: ${vagas.mensagem}`);
-//         }
+//         // Agora que os dados estão carregados, podemos exibir o array
+        
+        
 //     } catch (err) {
-//         console.error("Erro ao buscar vagas recomendadas:", err);
-//         alert("Erro ao se conectar ao servidor.");
+//         console.error('Erro ao carregar as vagas:', err);
 //     }
+    
 // }
+async function listarVagasRecomendadas() {
+    const token = localStorage.getItem('token');
 
-// // Modificar a função de carregamento
-// (async () => {
-//     await loadVagasRecomendadas(); // Carrega todas as vagas
-//     await listarVagasRecomendadas(); // Carrega vagas recomendadas
+    if (!token) {
+        alert("Você precisa estar logado para ver as vagas recomendadas.");
+        return;
+    }
 
-//     document.getElementById('arrow_right').addEventListener("click", () => {
-//         arrowRight(dataRecomendadas);
-//     });
-// })();
+    try {
+        const response = await fetch(`http://localhost:3000/api/vagasrecomendadas`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Limpa o array anterior
+            dataRecomendadas = [];
+
+            // Popula o array com as vagas recomendadas
+            data.forEach(data => {
+                let objVagas = {
+                    nome_empresa: data.nome_empresa,
+                    titulo: data.titulo,
+                    tipo_contratacao: data.tipo_contratacao,
+                    localizacao: data.localizacao,
+                    url_vaga: data.url_vaga,
+                    descricao: data.descricao
+                };
+                dataRecomendadas.push(objVagas);
+            });
+
+            // Se não houver vagas recomendadas, mostra mensagem
+            if (dataRecomendadas.length === 0) {
+                console.log("Nenhuma vaga recomendada encontrada.");
+                // Opcional: mostrar mensagem na interface
+            }
+
+        } else {
+            alert(`Erro: ${vagas.mensagem}`);
+        }
+    } catch (err) {
+        console.error("Erro ao buscar vagas recomendadas:", err);
+        alert("Erro ao se conectar ao servidor.");
+    }
+}
+
+// Modificar a função de carregamento
+(async () => {
+    await  listarVagasRecomendadas();
+    let  section_tinder = document.querySelector('.section-tinder')
+    if(!dataRecomendadas.length){
+         section_tinder.style.display = 'none';
+      }else{
+        section_tinder.style.display = 'block';
+      }
+    document.getElementById('arrow_right').addEventListener("click", () => {
+        arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
+    });
+})();
 
 //-----------------------CARROSSEL COM VAGAS---------------------------------
 // Chame a função para listar as vagas recomendadas quando a página carregar
-// document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
+document.addEventListener("DOMContentLoaded", listarVagasRecomendadas);
 
 const Rvaga_2 = document.getElementById("section_vaga_recomendada_2");
 const Rvaga_3 = document.getElementById("section_vaga_recomendada_3");
@@ -279,15 +283,16 @@ function textInner(data,tipoVaga) {
     `
     }
 }
-(async () => {
-    await loadVagasRecomendadas();
-    let  section_tinder = document.querySelector('.section-tinder')
-    if(!dataRecomendadas.length){
-         section_tinder.style.display = 'none';
-      }else{
-        section_tinder.style.display = 'block';
-      }
-    document.getElementById('arrow_right').addEventListener("click", () => {
-        arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
-    });
-})();
+// (async () => {
+//     await loadVagasRecomendadas();
+//     let  section_tinder = document.querySelector('.section-tinder')
+//     if(!dataRecomendadas.length){
+//          section_tinder.style.display = 'none';
+//       }else{
+//         section_tinder.style.display = 'block';
+//       }
+//     document.getElementById('arrow_right').addEventListener("click", () => {
+//         arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
+//     });
+// })();
+
