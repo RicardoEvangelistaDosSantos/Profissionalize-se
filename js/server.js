@@ -136,17 +136,6 @@ app.post("/login", (req, res) => {
 });
 
 // Rotas protegidas
-app.get('/perfil', authenticateToken, (req, res) => {
-    const id_usuario = req.usuario.id_usuario;
-    const query = `SELECT * FROM perfil WHERE id_usuario = ?`;
-    
-    db.query(query, [id_usuario], (err, results) => {
-        if (err) {
-            return res.status(500).json({ mensagem: 'Erro ao buscar perfil' });
-        }
-        res.status(200).json(results);
-    });
-});
 
 // Rota para obter perfil
 app.get('/perfil', authenticateToken, (req, res) => {
@@ -333,7 +322,7 @@ app.post('/submit-teste', authenticateToken, (req, res) => {
 
 // Rota GET para listar todas as vagas
 app.get('/api/vagas', (req, res) => {
-  db.query('SELECT V.*, nome_empresa FROM vaga v JOIN empresa e ON v.id_empresa = e.id_empresa', (err, results) => {
+  db.query('SELECT V.*, e.nome_empresa FROM vaga v JOIN empresa e ON v.id_empresa = e.id_empresa', (err, results) => {
       if (err) {
           console.error('Erro ao buscar vagas: ', err);
           return;

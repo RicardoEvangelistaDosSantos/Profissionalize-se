@@ -189,35 +189,51 @@ function editprofile() {
   * id_cidade === cidade de input
 */
 
-// //
-// document.addEventListener("DOMContentLoaded", async () => {
-//   const token = localStorage.getItem('token');
-//   const id_usuario = localStorage.getItem('id_usuario');
+document.addEventListener("DOMContentLoaded", async () => {
+  const token = localStorage.getItem('token');
+  const id_usuario = localStorage.getItem('id_usuario');
 
-//   if (!token || !id_usuario) {
-//       alert("Usuário não autenticado.");
-//       window.location.href = "./ login.html";
-//       return;
-//   }
+  if (!token || !id_usuario) {
+      alert("Usuário não autenticado.");
+      window.location.href = "./login.html";
+      return;
+  }
 
-//   try {
-//       const response = await fetch(`http://localhost:3000/perfil`, {
-//           method: 'GET',
-//           headers: {
-//               'Authorization': `Bearer ${token}`
-//           }
-//       });
-//       const perfilData = await response.json();
-//       if (response.ok) {
-//           // Preencher os dados do perfil na página
-//           // Exemplo: document.getElementById('nome').innerText = perfilData.nome;
-//       } else {
-//           // alert(`Erro: ${perfilData.mensagem}`);
-//       }
-//   } catch (err) {
-//       alert("Erro ao buscar perfil.");
-//   }
-// });
+  try {
+      const response = await fetch(`http://localhost:3000/perfil`, {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+      });
+      const perfilData = await response.json();
+      if (response.ok) {
+          // Preencher os dados do perfil nos inputs
+          document.getElementById('nome').value = perfilData.nome;
+          document.getElementById('sobrenome').value = perfilData.sobrenome;
+          document.getElementById('formacao').value = perfilData.formacao;
+          document.getElementById('resumo').value = perfilData.resumo;
+          document.getElementById('experiencia').value = perfilData.experiencia;
+          document.getElementById('telefone').value = perfilData.telefone;
+          document.getElementById('data-nascimento').value = perfilData.dt_nasc;
+          document.getElementById('id_estado').value = perfilData.estado;
+          document.getElementById('id_cidade').value = perfilData.cidade;
+          document.getElementById('inputColor').value = perfilData.cor_fundo;
+
+          // Se você quiser preencher as imagens, você pode fazer isso aqui
+          if (perfilData.foto_perfil) {
+              document.querySelector('.img-radion').style.backgroundImage = `url('${perfilData.foto_perfil}')`;
+          }
+          if (perfilData.foto_capa) {
+              document.querySelector('.section-1').style.backgroundImage = `url('${perfilData.foto_capa}')`;
+          }
+      } else {
+          alert(`Erro: ${perfilData.mensagem}`);
+      }
+  } catch (err) {
+      alert("Erro ao buscar perfil.");
+  }
+});
 
 
 
