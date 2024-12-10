@@ -282,11 +282,11 @@ function textInner(data,tipoVaga) {
 (async () => {
     await loadVagasRecomendadas();
     let  section_tinder = document.querySelector('.section-tinder')
-    if(!dataRecomendadas.length){
-         section_tinder.style.display = 'none';
-      }else{
-        section_tinder.style.display = 'block';
-      }
+    // if(!dataRecomendadas.length){
+    //      section_tinder.style.display = 'none';
+    //   }else{
+    //     section_tinder.style.display = 'block';
+    //   }
     document.getElementById('arrow_right').addEventListener("click", () => {
         arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
     });
