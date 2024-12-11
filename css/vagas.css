@@ -276,6 +276,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 #section-vaga {
   background-color: var(--background_color);
   padding: 40px;
+  
 }
 
 .container-vaga{
@@ -303,7 +304,9 @@ input:nth-of-type(5):checked ~ main#carousel {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
-
+.bobao{
+  text-align: center;
+}
 
 .container-vaga .vaga:focus {
   outline: none; /* Remove o contorno quando o foco é aplicado */

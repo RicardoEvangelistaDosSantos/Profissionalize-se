@@ -133,11 +133,11 @@ async function listarVagasRecomendadas() {
 (async () => {
     await  listarVagasRecomendadas();
     let  section_tinder = document.querySelector('.section-tinder')
-    if(!dataRecomendadas.length){
-         section_tinder.style.display = 'none';
-      }else{
-        section_tinder.style.display = 'block';
-      }
+    // if(!dataRecomendadas.length){
+    //      section_tinder.style.display = 'none';
+    //   }else{
+    //     section_tinder.style.display = 'block';
+    //   }
     document.getElementById('arrow_right').addEventListener("click", () => {
         arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
     });
@@ -269,7 +269,7 @@ function textInner(data,tipoVaga) {
         <div class="carrossel-container">
             <div class="left-vaga">
             <h4>${data.nome_empresa}</h4>
-            <h2>${data.titulo}</h2>
+            <h2 class="bobao">${data.titulo}</h2>
             <p>${data.tipo_contratacao}/${data.localizacao}</p>
             <a  href="${data.url_vaga}" target="_blank">Entrar na vaga</a> 
             </div>
@@ -283,15 +283,15 @@ function textInner(data,tipoVaga) {
     `
     }
 }
-(async () => {
-    await loadVagasRecomendadas();
-    let  section_tinder = document.querySelector('.section-tinder')
-    // if(!dataRecomendadas.length){
-    //      section_tinder.style.display = 'none';
-    //   }else{
-    //     section_tinder.style.display = 'block';
-    //   }
-    document.getElementById('arrow_right').addEventListener("click", () => {
-        arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
-    });
-})();
+// (async () => {
+//     await loadVagasRecomendadas();
+//     let  section_tinder = document.querySelector('.section-tinder')
+//     // if(!dataRecomendadas.length){
+//     //      section_tinder.style.display = 'none';
+//     //   }else{
+//     //     section_tinder.style.display = 'block';
+//     //   }
+//     document.getElementById('arrow_right').addEventListener("click", () => {
+//         arrowRight(dataRecomendadas); // Passando dataRecomendadas como argumento
+//     });
+// })();
